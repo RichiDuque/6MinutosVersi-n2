@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/azul"
+    tools:context=".ReferenciaActivity">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/custom_card"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ScrollView
+        android:layout_width="409dp"
+        android:layout_height="705dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnExportar"
+        app:layout_constraintTop_toTopOf="@+id/imageView4"
+        tools:layout_editor_absoluteX="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/nunito"
+                android:padding="20dp"
+                android:text="*Guyatt GH, Sullivan MJ, Thompson PJ, Fallen EL, Pugsley S 0., Taylor DW, et al. The 6-minute walk: a new measure of exercise capacity in patients with chronic heart failure sur sa capacite dans les activites de la vie quotidienne. colleagues’0 introduced the 12-minute walking test, in. Can Med Assoc J. 1985;132:919–23.
+\n*Londoño D, Acer R, Piotrostanalski A, Correa N, Guel L, Correa X. Manual De MedicióN De La Caminata De Seis Minutos. Minsalud. 2015;8–16.
+\n*Issues S, Test MW, Equipment R, Preparation P. American Thoracic Society ATS Statement : Guidelines for the Six-Minute Walk Test. 2002;166:111–7.
+\n*González-Mangado N, Rodríguez-Nieto MJ. Prueba de la marcha de los 6 minutos. Medicina Respiratoria [Internet]. 2016;9(1):15–22. Available from: http://www.neumologiaysalud.es/descargas/R9/R91-3.pdf
+\n*https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ENT/manual-medicion-caminata-6-mins.pdf"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.106" />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnExportar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="784dp"
+        android:backgroundTint="@color/azul"
+        android:text="Exportar"
+        app:cornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

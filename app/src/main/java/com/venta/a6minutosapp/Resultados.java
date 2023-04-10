@@ -34,7 +34,7 @@ import java.util.List;
 
 public class Resultados extends AppCompatActivity {
     TabLayout Tabresultados;
-    Button BtnAtrasDescanso, BtnExportar;
+    Button BtnAtrasDescanso, BtnExportar, BtnReferencia;
     TextView FC_maximo,PercentMaxFC,seispercent,ochopercent,DIFFC,FC_Recp;
     TextView DIF_Presion,DIF_Sat;
     TextView textoFormula,txttroster,txtperceDistancia;
@@ -80,7 +80,7 @@ public class Resultados extends AppCompatActivity {
         txtCedulaP=findViewById(R.id.txtCedula);
         txtFechaNP=findViewById(R.id.txtFechaNacimiento);
         txtFCMTP=findViewById(R.id.txtFCPaciente);
-
+        BtnReferencia = findViewById(R.id.btnReferencias);
 
         BtnAtrasDescanso.setOnClickListener(view -> {
             Intent intent = new Intent(this, Reloj.class);
@@ -88,9 +88,13 @@ public class Resultados extends AppCompatActivity {
         });
 
         BtnExportar.setOnClickListener(view -> {
+            Toast.makeText(this, "Enviado con exito",Toast.LENGTH_SHORT).show();
             salir();
         });
 
+        BtnReferencia.setOnClickListener(view -> {
+
+        });
 
         dataList = (ArrayList<dataMinuto> ) getIntent().getSerializableExtra("listaObjetos");
         Toast.makeText(this, getIntent().getExtras().getString("noVueltas"), Toast.LENGTH_SHORT).show();
