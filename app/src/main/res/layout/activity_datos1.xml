@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/azul"
+    tools:context=".Datos1Activity">
+
+    <TextView
+        android:id="@+id/txtFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="13 ENERO"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtFecha"
+        android:backgroundTint="@color/azul"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textInfo"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Información del paciente"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="24dp" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="170dp"
+        android:background="@drawable/custom_card"
+        android:backgroundTint="@color/white" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        app:srcCompat="@drawable/cronometro"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="190dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="290dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/editNombre"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Nombre"
+                android:padding="10dp"
+                android:background="@drawable/custom_datos"
+                android:layout_centerHorizontal="true"/>
+
+            <Spinner
+                android:id="@+id/spinnerDocumento"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/editNombre"
+                android:layout_centerHorizontal="true"
+                android:entries="@array/C.C"
+                android:padding="10dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/custom_datos"/>
+
+            <EditText
+                android:id="@+id/editDocumento"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="Numero de identificación"
+                android:background="@drawable/custom_datos"
+                android:padding="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@id/spinnerDocumento"
+                android:layout_centerHorizontal="true"/>
+
+            <EditText
+                android:id="@+id/editNacimiento"
+                android:layout_width="190dp"
+                android:clickable="true"
+                android:focusable="false"
+                android:textIsSelectable="false"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/editDocumento"
+                android:layout_alignStart="@+id/editDocumento"
+                android:layout_marginTop="17dp"
+                android:background="@drawable/custom_datos"
+                android:hint="Fecha nacimiento"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textSize="18dp" />
+            <DatePicker
+                android:id="@+id/dpFecha"
+                android:layout_width="350dp"
+                android:layout_height="400dp"
+                android:visibility="gone"
+                />
+
+            <EditText
+                android:id="@+id/editEdad"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:hint="Edad"
+                android:focusable="false"
+                android:textAlignment="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/custom_datos"
+                android:layout_below="@id/editDocumento"
+                android:layout_toRightOf="@id/editNacimiento"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnSuguiente1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_marginBottom="90dp"
+        android:layout_marginRight="50dp"
+        android:backgroundTint="#B8E0ED"
+        app:srcCompat="@drawable/flecha_siguiente"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

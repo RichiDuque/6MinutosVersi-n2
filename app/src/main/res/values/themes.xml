@@ -1,0 +1,24 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.6MinutosApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/gris</item>
+        <item name="colorPrimaryVariant">@color/gris</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryDark">#81FFFFFF</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/gris</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="DialogAnimations">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
+    </style>
+    <style name="splashTheme" parent="Theme.6MinutosApp">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+</resources>

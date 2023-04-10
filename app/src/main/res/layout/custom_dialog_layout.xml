@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="305dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="20dp"
+        android:id="@+id/card">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textDistancia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="Anota la Distancia recorrida "
+                android:textSize="18dp"
+                android:fontFamily="@font/poppins"
+                />
+
+            <EditText
+                android:id="@+id/editDistancia"
+                android:backgroundTint="#1E000000"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/custom_boton"
+                android:layout_marginRight="20dp"
+                android:inputType="numberDecimal"
+                android:layout_height="30dp"
+                android:layout_below="@+id/textDistancia"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonDistancia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editDistancia"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="#F84545"
+                android:text="Aceptar"
+                app:cornerRadius="12dp" />
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

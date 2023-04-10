@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sheetdialog1">
+
+    <TextView
+        android:id="@+id/choosetxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/nunito"
+        android:text="Medicamentos tomados el día del exámen diagnóstico"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="25dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:id="@+id/layoutEdit"
+        android:padding="8dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/def"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Escriba Aquí"
+            app:boxCornerRadiusBottomEnd="25dp"
+            app:boxCornerRadiusTopEnd="25dp"
+            app:boxCornerRadiusBottomStart="25dp"
+            app:boxCornerRadiusTopStart="25dp"
+            app:endIconMode="clear_text"
+            app:boxBackgroundMode="outline"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/EdittextMedicamentos"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:id="@+id/layoutButton"
+        android:padding="8dp">
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/ButtonMedicamentos"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/azul"
+            android:fontFamily="@font/nunito_light"
+            android:text="siguiente"
+            android:textSize="18dp"
+            app:cornerRadius="20dp" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

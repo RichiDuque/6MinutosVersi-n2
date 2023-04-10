@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentTwo">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/text40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/custom_boton"
+            android:backgroundTint="#61090F"
+            android:elevation="1dp"
+            android:padding="5dp"
+            android:text="Enright    Edad: 40-80"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/text802"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(2.11 × estatura cm) – (5.78 × edad años) – \n(2.29 × peso kg) + 667 m
+        "
+            android:textColor="@color/black"
+            android:padding="15dp"
+            android:backgroundTint="#D9D9D9"
+            android:background="@drawable/custom_boton"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_alignTop="@id/text40"/>
+
+        <TextView
+            android:id="@+id/text70"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text802"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/custom_boton"
+            android:backgroundTint="#61090F"
+            android:elevation="1dp"
+            android:padding="5dp"
+            android:text="Troosters    Edad:50-85"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/text102"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="218(5.14 x estatura(cm)-532 x edad(años)-[(1.80 x Peso Kg)+(51.31 x Sexo)]\n(Hombres:1 , Mujeres:0)"
+            android:textColor="@color/black"
+            android:padding="15dp"
+            android:backgroundTint="#D9D9D9"
+            android:background="@drawable/custom_boton"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_alignTop="@id/text70"/>
+
+        <TextView
+            android:id="@+id/text50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text102"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/custom_boton"
+            android:backgroundTint="#61090F"
+            android:elevation="1dp"
+            android:padding="5dp"
+            android:text="Gibbons    Edad:20-85"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/text1002"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="686.8 - (2.29 x edad años)-(74.7 x Sexo) \n(hombres: 1, mujeres: 0)"
+            android:textColor="@color/black"
+            android:padding="15dp"
+            android:backgroundTint="#D9D9D9"
+            android:background="@drawable/custom_boton"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_alignTop="@id/text50"/>
+    </RelativeLayout>
+
+</FrameLayout>

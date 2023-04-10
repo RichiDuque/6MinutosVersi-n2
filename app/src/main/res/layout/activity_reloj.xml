@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/azul"
+    android:id="@+id/fondoReloj">
+
+    <TextView
+        android:id="@+id/txtNoDetenciones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="54dp"
+        android:text="0"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toEndOf="@+id/ButtonDetencion"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="145dp"
+        android:layout_height="133dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/vueltasconjunto" />
+
+    <ImageButton
+        android:id="@+id/botonizquierdovueltas"
+        android:layout_width="54dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="48dp"
+        android:backgroundTint="#00000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/estadosbotonizquierdovueltas" />
+
+    <ImageButton
+        android:id="@+id/botonderechovueltas"
+        android:layout_width="51dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="44dp"
+        android:backgroundTint="#00000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView8"
+        app:srcCompat="@drawable/estadosbotonderechovueltas" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ButtonDetencion"
+        android:layout_width="135dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="44dp"
+        android:backgroundTint="#EF9999"
+        android:fontFamily="@font/nunito"
+        android:text="Detención"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.061" />
+
+    <TextView
+        android:id="@+id/cronometroSegundos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="108dp"
+        android:fontFamily="@font/nunito"
+        android:text="00"
+        android:textSize="120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.706"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cronometroMinutos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="108dp"
+        android:fontFamily="@font/nunito"
+        android:text="0"
+        android:textSize="120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.262"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textDosPuntos"
+        android:layout_width="25dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="96dp"
+        android:fontFamily="@font/nunito"
+        android:text=":"
+        android:textSize="120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/button_start_stop"
+        android:layout_width="57dp"
+        android:layout_height="62dp"
+        android:layout_gravity="center"
+        android:src="@drawable/play"
+        android:backgroundTint="#B8E0ED"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.379"></com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="391dp"
+        android:layout_height="416dp"
+        android:background="@drawable/custom_card"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ButtondeFC"
+        android:layout_width="76dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#FFC107"
+        android:fontFamily="@font/nunito_light"
+        android:text="FC"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:cornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttondeSat"
+        android:layout_width="76dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="88dp"
+        android:backgroundTint="#FFC107"
+        android:fontFamily="@font/nunito_light"
+        android:text="Sat"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:cornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttondeTas"
+        android:layout_width="63dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#FFC107"
+        android:fontFamily="@font/nunito_light"
+        android:text="TAS"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        app:cornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+
+    <Chronometer
+        android:id="@+id/chronometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.758"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttondeTad"
+        android:layout_width="63dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="88dp"
+        android:backgroundTint="#FFC107"
+        android:fontFamily="@font/nunito_light"
+        android:text="TAD"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        app:cornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ButtondeMMII"
+        android:layout_width="76dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#FFC107"
+        android:fontFamily="@font/nunito_light"
+        android:text="MMII"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        app:cornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.823"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttondeDisnea"
+        android:layout_width="76dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="88dp"
+        android:backgroundTint="#FFC107"
+        android:fontFamily="@font/nunito_light"
+        android:text="Disnea"
+        android:textColor="@color/black"
+        android:textSize="10dp"
+        app:cornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+    <EditText
+        android:id="@+id/editTextdeFC"
+        android:layout_width="50dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="44dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="123"
+        app:layout_constraintEnd_toStartOf="@+id/buttondeTas"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/ButtondeFC"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+    <EditText
+        android:id="@+id/editTextdeTas"
+        android:layout_width="41dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="70"
+        app:layout_constraintEnd_toStartOf="@+id/ButtondeMMII"
+        app:layout_constraintStart_toEndOf="@+id/buttondeTas"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+    <EditText
+        android:id="@+id/editTextdeMI"
+        android:layout_width="41dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="44dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="12"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/buttondeDisnea"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+    <EditText
+        android:id="@+id/editTextdeDisnea"
+        android:layout_width="41dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="96dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="55"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/buttondeDisnea"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+    <EditText
+        android:id="@+id/editTextdeTad"
+        android:layout_width="41dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="44"
+        app:layout_constraintEnd_toStartOf="@+id/buttondeDisnea"
+        app:layout_constraintStart_toEndOf="@+id/buttondeTad"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+    <EditText
+        android:id="@+id/editTextdeSat"
+        android:layout_width="50dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="96dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="98"
+        app:layout_constraintEnd_toStartOf="@+id/buttondeTad"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/buttondeSat"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="382dp"
+        android:layout_height="268dp"
+        app:cardCornerRadius="20dp"
+        android:backgroundTint="#C5C5C5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/cardReloj"
+
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="359dp"
+            android:layout_height="19dp"
+            android:fontFamily="@font/nunito_light"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:typeface="monospace"
+            android:textStyle="bold"
+            android:text="Minuto      Fc      Sat%      TAS     TAD      MMII    Disnea"
+            app:layout_constraintEnd_toEndOf="@+id/cardReloj"
+            app:layout_constraintStart_toStartOf="@+id/cardReloj" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/Recycler"
+            android:layout_width="371dp"
+            android:layout_height="194dp"
+            android:layout_marginTop="29dp"
+            app:layout_constraintEnd_toEndOf="@+id/cardReloj"
+            android:layout_marginLeft="5dp"
+            app:layout_constraintStart_toStartOf="@+id/cardReloj" />
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ButtonResultados"
+        android:layout_width="135dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="#FFCD1E"
+        android:fontFamily="@font/nunito"
+        android:text="Resultados"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.419" />
+
+    <TextView
+        android:id="@+id/txtNoVueltas"
+        android:layout_width="49dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="44dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+
+        app:layout_constraintEnd_toEndOf="@+id/imageView8"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/botonizquierdovueltas"
+        app:layout_constraintTop_toTopOf="@+id/imageView8" />
+
+    <TextView
+        android:id="@+id/txtMinutostitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins"
+        android:textStyle="bold"
+        android:text="Datos para Reposo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/white"
+        android:text="Vueltas"
+        app:layout_constraintStart_toStartOf="@+id/imageView8"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
