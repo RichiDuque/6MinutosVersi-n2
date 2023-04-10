@@ -238,26 +238,6 @@ public class Reloj extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 if (i == EditorInfo.IME_ACTION_NEXT) { // verifica si se presionó la tecla "Enter"
-                    edTas.requestFocus(); // mueve el foco al siguiente EditText
-                    return true;
-                }
-                return false;
-            }
-        });
-        edTas.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                if (i == EditorInfo.IME_ACTION_NEXT) { // verifica si se presionó la tecla "Enter"
-                    edMI.requestFocus(); // mueve el foco al siguiente EditText
-                    return true;
-                }
-                return false;
-            }
-        });
-        edMI.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                if (i == EditorInfo.IME_ACTION_NEXT) { // verifica si se presionó la tecla "Enter"
                     edSat.requestFocus(); // mueve el foco al siguiente EditText
                     return true;
                 }
@@ -268,6 +248,16 @@ public class Reloj extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 if (i == EditorInfo.IME_ACTION_NEXT) { // verifica si se presionó la tecla "Enter"
+                    edTas.requestFocus(); // mueve el foco al siguiente EditText
+                    return true;
+                }
+                return false;
+            }
+        });
+        edTas.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_NEXT) { // verifica si se presionó la tecla "Enter"
                     edTad.requestFocus(); // mueve el foco al siguiente EditText
                     return true;
                 }
@@ -275,6 +265,16 @@ public class Reloj extends AppCompatActivity {
             }
         });
         edTad.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_NEXT) { // verifica si se presionó la tecla "Enter"
+                    edMI.requestFocus(); // mueve el foco al siguiente EditText
+                    return true;
+                }
+                return false;
+            }
+        });
+        edMI.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 if (i == EditorInfo.IME_ACTION_NEXT) { // verifica si se presionó la tecla "Enter"
