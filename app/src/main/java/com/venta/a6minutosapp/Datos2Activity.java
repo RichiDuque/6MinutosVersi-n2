@@ -175,7 +175,12 @@ public class Datos2Activity extends AppCompatActivity {
         }else {
             spSexo.setSelection(2);
         }
-        spPeso.setSelection(Integer.parseInt(preferences.getString("peso","")));
+        try {
+            spPeso.setSelection(Integer.parseInt(preferences.getString("peso","")));
+        }catch (Exception E){
+            spPeso.setSelection(Integer.parseInt(preferences.getString("peso","0")));
+        }
+
         spMts.setText(preferences.getString("Talla-mts",""));
         spCm.setText(preferences.getString("Talla-cm",""));
     }

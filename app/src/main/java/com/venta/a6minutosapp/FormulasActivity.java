@@ -33,7 +33,13 @@ private int selectedTabNumber=1;
         TabItem1=findViewById(R.id.TabItem1);
         TabItem2=findViewById(R.id.TabItem2);
         Bundle datos = getIntent().getExtras();
-        String sexo = datos.getString("sexo");
+        String sexo = "Hombre";
+        try {
+            sexo = datos.getString("sexo");
+        }catch (Exception e){
+            sexo = "Hombre";
+        }
+
 
 
         getSupportFragmentManager().beginTransaction().setReorderingAllowed(true)

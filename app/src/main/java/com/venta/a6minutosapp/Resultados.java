@@ -138,6 +138,10 @@ public class Resultados extends AppCompatActivity {
     }
 
     private void GuardarResult() {
+        String segundosStr = getIntent().getExtras().getString("duracionDetencion");
+        int segundos = Integer.parseInt(segundosStr);
+        String duringDetencion = convertirSegundosAMinutos(segundos);
+        
         SharedPreferences preferences=getSharedPreferences("result",MODE_PRIVATE);
         SharedPreferences.Editor editor=preferences.edit();
         //double FCMT__,FCMAlcanzado__,sesentaFC__,ochentaFC__,DIF__FC,FC__Recp;
@@ -155,11 +159,20 @@ public class Resultados extends AppCompatActivity {
         editor.putString("Troster__",Troster__+"");
         editor.putString("Formula",Formula);
         editor.putString("PercentDista__",PercentDista__+"");
+        editor.putString("NoVueltas__",getIntent().getExtras().getString("noVueltas"));
+        editor.putString("NoDetencion",getIntent().getExtras().getString("noDetencion"));
+        editor.putString("Duracion_Detencion",duringDetencion);
 
 
         editor.commit();
 
 
+    }
+
+    private String convertirSegundosAMinutos(int segundos) {
+        int minutos = segundos / 60;
+        int segundosRestantes = segundos % 60;
+        return minutos + ":" + segundosRestantes;
     }
 
     private void ShowPaciente() {

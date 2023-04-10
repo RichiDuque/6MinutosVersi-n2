@@ -8,11 +8,10 @@ android {
 
     defaultConfig {
         applicationId "com.venta.a6minutosapp"
-        minSdk 21
         targetSdk 32
         versionCode 1
         versionName "1.0"
-
+        minSdkVersion 26
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

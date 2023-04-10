@@ -61,6 +61,7 @@ public class Reloj extends AppCompatActivity {
     Dialog dialog;
 
     int noDetenciones;
+    long tiempo_Detención;
 
     EditText edFC,edSat,edTas,edTad,edMI,edDisnea;
 
@@ -161,6 +162,7 @@ public class Reloj extends AppCompatActivity {
                     long elapsedSeconds = elapsedTime / 1000;
                     button.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.normal)));
                     System.out.println("Tiempo transcurrido: " + elapsedSeconds); // Imprimir tiempo transcurrido en consola
+                    tiempo_Detención=elapsedSeconds;
                 } else { // Si el cronómetro no está corriendo
                     chronometer.setBase(SystemClock.elapsedRealtime() - elapsedTime); // Restablecer el cronómetro
                     chronometer.start(); // Iniciar el cronómetro
@@ -168,7 +170,7 @@ public class Reloj extends AppCompatActivity {
                     noDetenciones++;
                     txtNoDetenciones.setText(noDetenciones+"");
                     button.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.red)));
-                    button.setText("Stop"); // Cambiar el texto del botón
+                    button.setText("Continua"); // Cambiar el texto del botón
                 }
             }
         });
@@ -208,12 +210,24 @@ public class Reloj extends AppCompatActivity {
         });
         changeCongratulationsVisibility(View.INVISIBLE);
         btnresultados.setOnClickListener(view -> {
-            recogedataListDescanso();
-            ArrayList<dataMinuto> listaAdress = new ArrayList<dataMinuto>(dataList);
-            Intent intent = new Intent(this, Resultados.class);
-            intent.putExtra("listaObjetos", listaAdress);
-            intent.putExtra("noVueltas",txtVueltas.getText().toString());
-            startActivity(intent);
+            if (isRunning) {
+                Toast.makeText(this, "Pare el cronómetro de detenciones", Toast.LENGTH_SHORT).show();
+            }else{
+                if (edFC.getText().toString().equals("")||edSat.getText().toString().equals("")||edTas.getText().toString().equals("")) {
+                    Toast.makeText(this, "Escribe los valores del minuto 5 de descanso", Toast.LENGTH_SHORT).show();
+                }else{
+                    recogedataListDescanso();
+                    ArrayList<dataMinuto> listaAdress = new ArrayList<dataMinuto>(dataList);
+                    Intent intent = new Intent(this, Resultados.class);
+                    intent.putExtra("noDetencion",noDetenciones+"");
+                    intent.putExtra("duracionDetencion",tiempo_Detención+"");
+                    intent.putExtra("listaObjetos", listaAdress);
+                    intent.putExtra("noVueltas",txtVueltas.getText().toString());
+                    startActivity(intent);
+                }
+            }
+
+
         });
 
         if(savedInstanceState!=null){
@@ -317,7 +331,7 @@ public class Reloj extends AppCompatActivity {
                 segundos++;
 
                 try {
-                    Thread.sleep(1000);//Interrumpe por un segundo el ciclo de repetición, dando la percepción de tiempo
+                    Thread.sleep(100);//Interrumpe por un segundo el ciclo de repetición, dando la percepción de tiempo
                 } catch (InterruptedException e) {
                     e.printStackTrace();//Impresión por consola del error generado durante el sleep
                 }
@@ -414,7 +428,7 @@ public class Reloj extends AppCompatActivity {
         String count="";
         dataMinuto daMin =new dataMinuto();
         if(runningTest==true){
-            switch (textcronometroMin.getText().toString()+1){
+            switch (textcronometroMin.getText().toString()){
                 case "1":daMin.setMinuto("Min Uno");count="Escriba ahora los datos para el 2Min";break;
                 case "2":daMin.setMinuto("Min Dos");count="Escriba ahora los datos para el 3Min";break;
                 case "3":daMin.setMinuto("Min Tres");count="Escriba ahora los datos para el 4Min";break;
@@ -526,13 +540,8 @@ public class Reloj extends AppCompatActivity {
     private void runningDescanso() {
 
         //putDataIntoRecyclerView(dataList);
-        cleanVariables();
+  
         setDraw();
-        try {
-            Thread.sleep(2000); // espera 100 milisegundos
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         //Se define hilo de procesamiento
         new Thread(() -> {
@@ -554,7 +563,7 @@ public class Reloj extends AppCompatActivity {
 
 
                 }
-                if(segundos==38 & minuto==0){
+                if(segundos==21 & minuto==0){
                     recogedataListDescanso();
                     putDataIntoRecyclerView(dataList);
                     cleanVariables();
@@ -570,7 +579,7 @@ public class Reloj extends AppCompatActivity {
                 segundos++;
 
                 try {
-                    Thread.sleep(1000);//Interrumpe por un segundo el ciclo de repetición, dando la percepción de tiempo
+                    Thread.sleep(100);//Interrumpe por un segundo el ciclo de repetición, dando la percepción de tiempo
                 } catch (InterruptedException e) {
                     e.printStackTrace();//Impresión por consola del error generado durante el sleep
                 }
@@ -633,7 +642,7 @@ public class Reloj extends AppCompatActivity {
 
              case "1":daMin.setMinuto("M 1 Desc");count="Escriba los datos para 3Min Desc";break;
 
-             case "3":daMin.setMinuto("M 3 Desc");count="Escriba los datos para 5Min Desc";break;
+             case "3":daMin.setMinuto("M 3 Desc");count="Escriba los datos para 5Min Desc";setDistance();break;
              case "5":daMin.setMinuto("M 5 Desc");count="Fin de la prueba";break;
              case "6":daMin.setMinuto("Desc Seis");count="Datos Desc Seis";break;
              default:daMin.setMinuto("Desc Seis");count="Datos Desc Seis";break;
@@ -688,8 +697,18 @@ public class Reloj extends AppCompatActivity {
                 Drawable shape = (Drawable) imgContainer.getBackground();
                 shape.setColorFilter(Color.parseColor(colorToApply), android.graphics.PorterDuff.Mode.SRC);
                 //Looper.prepare();
-                showDialogDistance();
                 //Looper.loop();
+            }
+        });
+    }
+    private void setDistance(){
+        //final TextView text,final String value
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                showDialogDistance();
+
             }
         });
     }
