@@ -93,7 +93,12 @@ public class Resultados extends AppCompatActivity {
         });
 
         BtnReferencia.setOnClickListener(view -> {
-
+            Intent intent = new Intent(this, ReferenciaActivity.class);
+            intent.putExtra("noDetencion",getIntent().getExtras().getString("noDetencion"));
+            intent.putExtra("duracionDetencion",getIntent().getExtras().getString("duracionDetencion"));
+            intent.putExtra("listaObjetos", getIntent().getSerializableExtra("listaObjetos"));
+            intent.putExtra("noVueltas",getIntent().getExtras().getString("noVueltas"));
+            startActivity(intent);
         });
 
         dataList = (ArrayList<dataMinuto> ) getIntent().getSerializableExtra("listaObjetos");
