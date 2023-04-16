@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/nunito"
-        android:text="Digite su correo electrónico"
+        android:text="Digite el correo electrónico del profesional de la salud"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="25dp" />

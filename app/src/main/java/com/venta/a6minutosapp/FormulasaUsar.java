@@ -24,7 +24,7 @@ public class FormulasaUsar {
         int edad=0;
         int peso=0;
         int sexo=1;
-        String sex="HOMBRE";
+        String sex="Masculino";
         SharedPreferences preferences = context.getSharedPreferences("usur",MODE_PRIVATE);
         String prefForm=preferences.getString("formula","none");
         try{
@@ -34,14 +34,14 @@ public class FormulasaUsar {
             peso= Integer.parseInt(preferences.getString("peso","0"));
         }catch (Exception e){}
         try{
-            sex=preferences.getString("sexo","HOMBRE");
+            sex=preferences.getString("sexo","Masculino");
         }catch (Exception e){}
-        if(sex.equals("HOMBRE")){
+        if(sex.equals("Masculino")){
             sexo=1;
         }else {sexo=0;}
         if(prefForm.equals("Enright")){
             if(sexo==0){
-                prefForm="EnMujer";
+                prefForm="Femenino";
             }
 
         }
@@ -53,7 +53,7 @@ public class FormulasaUsar {
 
 
                 break;
-            case "EnMujer":
+            case "Femenino":
 
 
                 respuesta=(2.11 * estatura(context))-(5.78 * edad )-(2.29*peso)+667;

@@ -107,7 +107,7 @@ private int selectedTabNumber=1;
                 Drawable buttonDrawable = finalSelectedTextView.getBackground();
                 buttonDrawable = DrawableCompat.wrap(buttonDrawable);
                 //the color is a direct color int and not a color resource
-                DrawableCompat.setTint(buttonDrawable, Color.parseColor("#61090F"));
+                DrawableCompat.setTint(buttonDrawable, Color.parseColor("#FF3F51B5"));
                 finalSelectedTextView.setBackground(buttonDrawable);
                 finalSelectedTextView.setTextColor(Color.WHITE);
 

@@ -13,8 +13,8 @@
 
     <string-array name="SEXO">
         <item>Sexo</item>
-        <item>Hombre</item>
-        <item>Mujer</item>
+        <item>Masculino</item>
+        <item>Femenino</item>
     </string-array>
 
     <string-array name="Mts">
@@ -547,9 +547,9 @@
     <string name="heading_two">INSTRUCCIONES ANTES  DE EMPEZAR</string>
     <string name="heading_three">DATOS DEL PACIENTE CADA MINUTO</string>
     <string name="heading_fourth">FUNCIONES QUE CONTIENE EL CRONÓMETRO</string>
-    <string name="desc_one">"Deberá completar los datos del paciente en reposo antes de empezar, para esto oprima encima de cada línea junto a cada título que desea llenar "</string>
-    <string name="desc_two">"Luego de llenar todo, podrá iniciar la prueba dando click al boton azul de PLAY "</string>
-    <string name="desc_three">"Una vez iniciado el cronómetro arrancará, luego usted deberá llenar de nuevo los datos del paciente cada minuto "</string>
-    <string name="desc_fourth">"Una vez iniciado el cronómetro, podrá acceder a los botones que le permitirá agregar vueltas y detenciones, el botón de detenciones al oprimirse empezará un cronómetro por aparte, este le indicará el tiempo total que ha durado detenido el pacinte, para parar el cronómetro, deberá oprimir de nuevo el botón, esto contará como una detención, cada vez que se detenga el paciente oprima de nuevo el botón y seguirá el cronómetro y también contará como una nueva detención"</string>
+    <string name="desc_one">"Antes de empezar la prueba, es importante completar la información del paciente en reposo (estas es una imagen para instrucciones). Para hacerlo, simplemente haga clic en cada línea junto al título correspondiente para introducir la información requerida "</string>
+    <string name="desc_two">"Una vez que haya completado todos los datos, puede iniciar la prueba presionando el botón azul de reproducción (PLAY)"</string>
+    <string name="desc_three">"Una vez que inicie el cronómetro con el botón de PLAY, comenzará la prueba. Durante la prueba, deberá registrar la información del paciente cada minuto. Para ello, deberá llenar nuevamente los datos en la sección correspondiente que aparecerá después de los primeros 20 segundos de cada minuto, por ejemplo: usted deberá llenar los datos del primer minuto antes del 1:20, usted deberá llenar los datos del minuto 2 antes del 2:20, usted deberá llenar los datos del final de la prueba antes del 0:20 de descanso. Mantenga su atención en la prueba para registrar de manera precisa los datos del paciente en cada momento."</string>
+    <string name="desc_fourth">"Una vez iniciado el cronómetro, podrás acceder a los botones que te permitirán agregar vueltas y detenciones. El botón de detenciones, al oprimirse, empezará un cronómetro aparte que indicará el tiempo total que ha durado detenido el paciente. Para detener el cronómetro, deberás oprimir de nuevo el botón, esto contará como una detención. Cada vez que el paciente se detenga, deberás oprimir de nuevo el botón y seguirá el cronómetro, también contará como una nueva detención."</string>
 
 </resources>

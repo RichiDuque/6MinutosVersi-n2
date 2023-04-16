@@ -18,6 +18,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.text.InputFilter;
@@ -323,8 +324,7 @@ public class Reloj extends AppCompatActivity {
                     segundos=0;
                     minuto++;
                     setTextChronometerMinutos(minuto);
-
-
+                    mostrarMensaje(minuto);
 
                 }//Aumenta el número de segundos
                 setTextChronometer(segundos);//Asigna valor de segundos al cronómetro
@@ -359,6 +359,28 @@ public class Reloj extends AppCompatActivity {
         changeIcon(MediaType.STOP);
 
 
+
+    }
+
+    public void mostrarMensaje(int minutosTranscurridos) {
+
+        Handler handler = new Handler(Looper.getMainLooper());
+        int minutosRestantes = 6 - minutosTranscurridos;
+        String mensaje = "Ya ha pasado " + minutosTranscurridos + " minutos, te faltan " + minutosRestantes;
+        if (minutosTranscurridos == 6) {
+            mensaje = "Ya finalizó la prueba";
+        }
+
+// Luego, en cualquier otro hilo, puedes mostrar el Toast utilizando el objeto Handler creado anteriormente:
+        String finalMensaje = mensaje;
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast toast = Toast.makeText(getApplicationContext(), finalMensaje, Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                toast.show();
+            }
+        });
 
     }
 
@@ -602,10 +624,9 @@ public class Reloj extends AppCompatActivity {
                 System.out.println("//////////////////////////////////");
                 while(iter.hasNext()){
                     person = (dataMinuto) iter.next(); /* Cast del Objeto a la Clase Persona*/
-                    System.out.println(person.getFC());/* Accedo a los atributos de la clase
-                                           por medio de sus Getters*/
+
                 }
-                System.out.println("//////////////////////////////////");
+
                 //checkTopScore();//Valida puntaje
             }
         }).start();

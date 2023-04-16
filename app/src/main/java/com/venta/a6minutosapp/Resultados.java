@@ -9,12 +9,15 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -27,6 +30,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -44,6 +48,8 @@ public class Resultados extends AppCompatActivity {
     double FCMT__,FCMAlcanzado__,sesentaFC__,ochentaFC__,DIF__FC,FC__Recp;
     double TA__,Dif__Sat;
     double Troster__,PercentDista__;
+
+    Dialog dialog;
     String Formula;
     double VO2__,METS__;
     TextView txtVOmax,txtMETs;
@@ -83,8 +89,7 @@ public class Resultados extends AppCompatActivity {
 
 
         BtnAtrasDescanso.setOnClickListener(view -> {
-            Intent intent = new Intent(this, Reloj.class);
-            startActivity(intent);
+            showResultBoard(dataList);
         });
 
         BtnExportar.setOnClickListener(view -> {
@@ -93,18 +98,15 @@ public class Resultados extends AppCompatActivity {
 
 
         dataList = (ArrayList<dataMinuto> ) getIntent().getSerializableExtra("listaObjetos");
-        Toast.makeText(this, getIntent().getExtras().getString("noVueltas"), Toast.LENGTH_SHORT).show();
         ArrayList<Integer> l = new ArrayList<>();
         ArrayList<Integer> Ta = new ArrayList<>();
         ArrayList<Integer> sat = new ArrayList<>();
 
         dataMinuto person ;
         Iterator iter = dataList.iterator();
-        System.out.println("resultados//////////////////////////////////");
         int aux=0;
         while(iter.hasNext()){
             person = (dataMinuto) iter.next(); /* Cast del Objeto a la Clase Persona*/
-            System.out.println(aux +": "+ person.getFC());// Accedo a los atributos de la clase
             aux++;
             try {
                 l.add(Integer.parseInt(person.getFC()));
@@ -135,6 +137,19 @@ public class Resultados extends AppCompatActivity {
 
 
 
+    }
+
+    private void showResultBoard(ArrayList<dataMinuto> dataList) {
+        dialog.setContentView(R.layout.board);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(false);
+        //MaterialButton btnDistance = dialog.findViewById(R.id.buttonDistancia);
+        //EditText editDistance= dialog.findViewById(R.id.editDistancia);
+
+        
+
+        dialog.show();
     }
 
     private void GuardarResult() {
@@ -202,8 +217,11 @@ public class Resultados extends AppCompatActivity {
         Altura=Altura/100;
         double auxi=(Altura*Altura);
         double imc=peso/auxi;
-        imc=Math.round(imc * 100.0) / 100.0;
-        txtIMCP.setText("IMC: "+imc);
+
+        DecimalFormat df = new DecimalFormat("#.##");
+        double roundedNumber = Double.parseDouble(df.format(imc));
+
+        txtIMCP.setText("IMC: "+roundedNumber);
 
     }
 
@@ -241,21 +259,26 @@ public class Resultados extends AppCompatActivity {
     }
 
     private void CalculoSat(ArrayList<Integer> sat) {
-        int satMinimaEncontrada = Integer.MAX_VALUE; // Inicializamos la variable con el valor mínimo posible de un entero
+        int satMinimaEncontrada = Integer.MAX_VALUE;
+        int satMaximaEncontrada= Integer.MIN_VALUE;
+        // Inicializamos la variable con el valor mínimo posible de un entero
         System.out.println("Max Value"+satMinimaEncontrada);
         for (int numero : sat) {
             if (numero < satMinimaEncontrada) {
                 satMinimaEncontrada = numero;
             }
+            if(numero>satMaximaEncontrada){
+                satMaximaEncontrada=numero;
+            }
         }
         //TA__,Dif__Sat
         try {
-            DIF_Sat.setText((satMinimaEncontrada-sat.get(0))+"");
+            DIF_Sat.setText((satMinimaEncontrada-satMaximaEncontrada)+"");
 
         }catch (Exception e){
 
         }
-        try{Dif__Sat=satMinimaEncontrada-sat.get(0);}catch (Exception e){}
+        try{Dif__Sat=satMinimaEncontrada-satMaximaEncontrada;}catch (Exception e){}
 
     }
 
@@ -270,7 +293,6 @@ public class Resultados extends AppCompatActivity {
                 numeroMayor = numero;
             }
         }
-        System.out.println("frecuencia mayor "+numeroMayor+"+++++++++++");
         int FCMaximaEncontrada=  numeroMayor;
         SharedPreferences preferences=getSharedPreferences("usur",MODE_PRIVATE);
         double edadint=Integer.parseInt(preferences.getString("edad","1"));
@@ -281,14 +303,22 @@ public class Resultados extends AppCompatActivity {
         FCMT__=edadint;
         FC_maximo.setText(edadint+"");
         double aux=(FCMaximaEncontrada/edadint)*100;
+
+        double number = 3.14159265359;
+        DecimalFormat df = new DecimalFormat("#.##");
+
+
         FCMAlcanzado__=aux;
         PercentMaxFC.setText(Math.round(aux)+""+" %");
-        seispercent.setText((0.65*edadint)+"");
-        sesentaFC__=0.65*edadint;
-        ochopercent.setText((0.85*edadint)+"");
-        ochentaFC__=0.85*edadint;
+
+        double sesenta65 = Double.parseDouble(df.format(0.65*edadint));
+        seispercent.setText(sesenta65+"");
+        sesentaFC__=sesenta65;
+        double ochenta85 = Double.parseDouble(df.format(0.85*edadint));
+        ochopercent.setText((ochenta85)+"");
+        ochentaFC__=ochenta85;
         try {
-            System.out.println("scando el numero reposo "+l.get(0));
+
             DIFFC.setText((FCMaximaEncontrada- l.get(0))+"");
             DIF__FC=FCMaximaEncontrada- l.get(0);
         }catch (Exception e){
@@ -312,7 +342,7 @@ public class Resultados extends AppCompatActivity {
         dataMinuto person ;
         boolean bandera1=true, bandera2=true;
         Iterator iter = dataList.iterator();
-        System.out.println("revisando dataList");
+
         while(iter.hasNext()){
             person = (dataMinuto) iter.next(); /* Cast del Objeto a la Clase Persona*/
 
@@ -320,9 +350,9 @@ public class Resultados extends AppCompatActivity {
 
                 try {
                     desca=Integer.parseInt(person.getFC());
-                    System.out.println(person.getFC());// Accedo a los atributos de la clase
+
                 }catch (Exception e){
-                    System.out.println(person.getFC());// Accedo a los atributos de la clase
+
                     bandera1=false;
                 }
 
@@ -331,9 +361,9 @@ public class Resultados extends AppCompatActivity {
 
                 try {
                     minDesc=Integer.parseInt(person.getFC());
-                    System.out.println(person.getFC());// Accedo a los atributos de la clase
+
                 }catch (Exception e){
-                    System.out.println(person.getFC());// Accedo a los atributos de la clase
+
                     bandera2=false;
                 }
 
@@ -341,7 +371,7 @@ public class Resultados extends AppCompatActivity {
 
 
         }
-        System.out.println("revisando dataList");
+
         String result="0";
         if(bandera1==true&&bandera2==true){
             result=minDesc-desca+"";

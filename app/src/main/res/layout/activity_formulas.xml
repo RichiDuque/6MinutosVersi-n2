@@ -39,7 +39,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="66dp"
         android:layout_below="@id/titleFormula"
         android:layout_centerHorizontal="true"
         android:id="@+id/groupSexo"
@@ -55,7 +55,7 @@
             android:background="@drawable/custom_boton"
             android:backgroundTint="#D9D9D9"
             android:padding="5dp"
-            android:text="Mujer"
+            android:text="Femenino"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/TabItem1" />
 
@@ -65,9 +65,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:background="@drawable/custom_boton"
-            android:backgroundTint="#61090F"
+            android:backgroundTint="@color/azul"
             android:padding="5dp"
-            android:text="Hombre"
+            android:text="Masculino"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -97,5 +97,17 @@
         android:backgroundTint="#B8E0ED"
         android:clickable="true"
         app:srcCompat="@drawable/flecha_anterior" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito"
+        android:textStyle="bold"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/titleFormula"
+        android:text="Seleccione primero el género, y luego oprima encima de la fórmula que desea usar" />
 
 </RelativeLayout>

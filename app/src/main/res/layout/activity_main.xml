@@ -9,11 +9,11 @@
 
     <ImageView
         android:id="@+id/imageTitle"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_width="350dp"
+        android:layout_height="300dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        app:srcCompat="@drawable/bienvenida" />
+        app:srcCompat="@drawable/logo6m" />
 
     <ImageView
         android:id="@+id/imageCronometro"
