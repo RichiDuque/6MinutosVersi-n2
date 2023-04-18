@@ -193,9 +193,9 @@
                         android:backgroundTint="#FFCB77"
                         android:fontFamily="@font/nunito"
                         android:paddingLeft="5dp"
-                        android:paddingTop="5dp"
+                        android:paddingTop="9dp"
                         android:text="IMC 6"
-                        android:textSize="20dp"
+                        android:textSize="16dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
 

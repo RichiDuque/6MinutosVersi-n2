@@ -3,6 +3,7 @@ package com.venta.a6minutosapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -38,7 +39,7 @@ import java.util.List;
 
 public class Resultados extends AppCompatActivity {
     TabLayout Tabresultados;
-    Button BtnAtrasDescanso, BtnExportar;
+    Button BtnAtrasDescanso, BtnExportar, BtnReferencia;
     TextView FC_maximo,PercentMaxFC,seispercent,ochopercent,DIFFC,FC_Recp;
     TextView DIF_Presion,DIF_Sat;
     TextView textoFormula,txttroster,txtperceDistancia;
@@ -86,16 +87,27 @@ public class Resultados extends AppCompatActivity {
         txtCedulaP=findViewById(R.id.txtCedula);
         txtFechaNP=findViewById(R.id.txtFechaNacimiento);
         txtFCMTP=findViewById(R.id.txtFCPaciente);
+        BtnReferencia = findViewById(R.id.btnReferencias);
 
+        dialog=new Dialog(Resultados.this);
 
         BtnAtrasDescanso.setOnClickListener(view -> {
             showResultBoard(dataList);
         });
 
         BtnExportar.setOnClickListener(view -> {
+            Toast.makeText(this, "Enviado con exito",Toast.LENGTH_SHORT).show();
             salir();
         });
 
+        BtnReferencia.setOnClickListener(view -> {
+            Intent intent = new Intent(this, ReferenciaActivity.class);
+            intent.putExtra("noDetencion",getIntent().getExtras().getString("noDetencion"));
+            intent.putExtra("duracionDetencion",getIntent().getExtras().getString("duracionDetencion"));
+            intent.putExtra("listaObjetos", getIntent().getSerializableExtra("listaObjetos"));
+            intent.putExtra("noVueltas",getIntent().getExtras().getString("noVueltas"));
+            startActivity(intent);
+        });
 
         dataList = (ArrayList<dataMinuto> ) getIntent().getSerializableExtra("listaObjetos");
         ArrayList<Integer> l = new ArrayList<>();
@@ -144,13 +156,30 @@ public class Resultados extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(false);
-        //MaterialButton btnDistance = dialog.findViewById(R.id.buttonDistancia);
-        //EditText editDistance= dialog.findViewById(R.id.editDistancia);
+        TextView txRep  = dialog.findViewById(R.id.textView6);
 
-        
+
+        String resu="";
+
+        for (dataMinuto objeto : dataList) {
+
+            resu+=objeto.getMinuto()+"     ";
+            resu+=objeto.getFC()+"     ";
+            resu+= objeto.getSaturacion()+"        ";
+            resu+= objeto.getTAS()+"        ";
+            resu+= objeto.getTAD()+"        ";
+            resu+= objeto.getMMII()+"        ";
+            resu+= objeto.getDisnea()+"\n";
+
+        }
+        txRep.setText(resu);
+
 
         dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
     }
+
+
 
     private void GuardarResult() {
         String segundosStr = getIntent().getExtras().getString("duracionDetencion");
@@ -203,7 +232,7 @@ public class Resultados extends AppCompatActivity {
 
         txtCedulaP.setText(preferences.getString("num_documento","none"));
         txtFechaNP.setText(preferences.getString("fecha_nacimiento","none"));
-        txtFCMTP.setText("FC Max T: "+FCMT__);
+        txtFCMTP.setText("FC Teo "+FCMT__);
         try {
             Altura= Integer.parseInt(preferences.getString("Talla-mts","none"));
 
@@ -213,15 +242,17 @@ public class Resultados extends AppCompatActivity {
         }catch (Exception e){}
         Altura=Altura*100;
         Altura=Altura+altCm;
+        double alturin=Altura;
         txtAlturaP.setText(Altura+" Cm");
-        Altura=Altura/100;
-        double auxi=(Altura*Altura);
+
+        alturin=Altura/100.0;
+        double auxi=(alturin*alturin);
         double imc=peso/auxi;
 
         DecimalFormat df = new DecimalFormat("#.##");
         double roundedNumber = Double.parseDouble(df.format(imc));
 
-        txtIMCP.setText("IMC: "+roundedNumber);
+        txtIMCP.setText("IMC"+roundedNumber);
 
     }
 
