@@ -3,7 +3,11 @@ package com.venta.a6minutosapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+
 import android.content.DialogInterface;
+
+import android.content.ContextWrapper;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -20,11 +24,16 @@ import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
+import com.venta.a6minutosapp.email.JavaMailAPI;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
@@ -96,8 +105,7 @@ public class Resultados extends AppCompatActivity {
         });
 
         BtnExportar.setOnClickListener(view -> {
-            Toast.makeText(this, "Enviado con exito",Toast.LENGTH_SHORT).show();
-            salir();
+            ExportarExcel();
         });
 
         BtnReferencia.setOnClickListener(view -> {
@@ -452,34 +460,226 @@ public class Resultados extends AppCompatActivity {
         dialog.getWindow().setGravity(Gravity.BOTTOM);
     }
 
-    private void crearExcel(){
-        Workbook workbook = new XSSFWorkbook();
-        Sheet sheet = workbook.createSheet("MiHoja");
+    private void ExportarExcel() {
+        SharedPreferences preferencesuser = getSharedPreferences("usur", MODE_PRIVATE);
+        SharedPreferences preferencesresult = getSharedPreferences("result", MODE_PRIVATE);
+        Workbook wb = new HSSFWorkbook();
+        Cell cell = null;
 
-        Row row = sheet.createRow(0);
-        Cell cell = row.createCell(0);
-        cell.setCellValue("Nombre");
+        Sheet sheet = null;
+        sheet = wb.createSheet("Datos paciente");
+
+        CellStyle style = wb.createCellStyle();
+        style.setBorderTop(BorderStyle.THIN);
+        style.setBorderBottom(BorderStyle.THIN);
+        style.setBorderLeft(BorderStyle.THIN);
+        style.setBorderRight(BorderStyle.THIN);
+
+
+        Row row = null;
+
+        row = sheet.createRow(0);
+        cell = row.createCell(0);
+        cell.setCellValue("Paciente");
+
+        sheet.createRow(1);
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesuser.getString("nombre", "none"));
 
         row = sheet.createRow(1);
         cell = row.createCell(0);
-        cell.setCellValue("Juan");
+        cell.setCellValue("Tipo de documento");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesuser.getString("tipo_documento", "none"));
 
         row = sheet.createRow(2);
         cell = row.createCell(0);
-        cell.setCellValue("María");
+        cell.setCellValue("N° Documento");
 
-        File file = new File(getExternalFilesDir(null), "miArchivo.xlsx");
-        FileOutputStream fos = null;
-        try {
-            fos = new FileOutputStream(file);
-            workbook.write(fos);
-            fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesuser.getString("num_documento", "none"));
+
+        row = sheet.createRow(3);
+        cell = row.createCell(0);
+        cell.setCellValue("Fecha de nacimiento");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesuser.getString("fecha_nacimiento", "none"));
+
+        row = sheet.createRow(4);
+        cell = row.createCell(0);
+        cell.setCellValue("Edad");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesuser.getString("edad", "none"));
+
+        row = sheet.createRow(5);
+        cell = row.createCell(0);
+        cell.setCellValue("Sexo");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesuser.getString("sexo", "none"));
+
+        row = sheet.createRow(6);
+        cell = row.createCell(0);
+        cell.setCellValue("Medicamentos");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesuser.getString("Medicamentos", "none"));
+
+        row = sheet.createRow(7);
+        cell = row.createCell(0);
+        cell.setCellValue("Peso");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesuser.getString("peso", "none"));
+
+        row = sheet.createRow(8);
+        cell = row.createCell(0);
+        cell.setCellValue("Talla");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesuser.getString("Talla-mts", "none") + "," + preferencesuser.getString("Talla-cm", "none"));
+
+        row = sheet.createRow(9);
+        cell = row.createCell(0);
+        cell.setCellValue("Formula");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesuser.getString("formula", "none"));
+
+        row = sheet.createRow(10);
+        cell = row.createCell(0);
+        cell.setCellValue("distancia");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesuser.getString("distancia", "none"));
+
+        row = sheet.createRow(11);
+        cell = row.createCell(0);
+        cell.setCellValue("FC-teorica");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesuser.getString("FC-teorica", "none"));
+
+        row = sheet.createRow(12);
+        cell = row.createCell(0);
+        cell.setCellValue("FC-Relativa");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesresult.getString("FC__Recp", "none"));
+
+        row = sheet.createRow(13);
+        cell = row.createCell(0);
+        cell.setCellValue("FCM Alcanzado");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesresult.getString("FCMAlcanzado__", "none"));
+
+        row = sheet.createRow(14);
+        cell = row.createCell(0);
+        cell.setCellValue("PercentDista");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesresult.getString("PercentDista__", "none"));
+
+        row = sheet.createRow(15);
+        cell = row.createCell(0);
+        cell.setCellValue("Troster");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesresult.getString("Troster__", "none"));
+
+        row = sheet.createRow(16);
+        cell = row.createCell(0);
+        cell.setCellValue("FCMT");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesresult.getString("FCMT__", "none"));
+
+        row = sheet.createRow(17);
+        cell = row.createCell(0);
+        cell.setCellValue("sesentaFC");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesresult.getString("sesentaFC__", "none"));
+
+        row = sheet.createRow(18);
+        cell = row.createCell(0);
+        cell.setCellValue("Déficit Saturación");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesresult.getString("Dif__Sat", "none"));
+
+        row = sheet.createRow(19);
+        cell = row.createCell(0);
+        cell.setCellValue("TA");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesresult.getString("TA__", "none"));
+
+        row = sheet.createRow(20);
+        cell = row.createCell(0);
+        cell.setCellValue("ochenta FC");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesresult.getString("ochentaFC__", "none"));
+
+        row = sheet.createRow(21);
+        cell = row.createCell(0);
+        cell.setCellValue("Déficit FC");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesresult.getString("DIF__FC", "none"));
+
+        cell = sheet.getRow(0).getCell(0);
+        // Establecer ancho de columna
+        sheet.setColumnWidth(cell.getColumnIndex(), 5000);
+
+        cell = sheet.getRow(0).getCell(1);
+        // Establecer ancho de columna
+        sheet.setColumnWidth(cell.getColumnIndex(), 5000);
+
+        // Obtener celda o rango de celdas
+        CellRangeAddress range = CellRangeAddress.valueOf("A1:B22");
+        for (int row2 = range.getFirstRow(); row2 <= range.getLastRow(); row2++) {
+            for (int col = range.getFirstColumn(); col <= range.getLastColumn(); col++) {
+                cell = sheet.getRow(row2).getCell(col);
+
+                // Aplicar estilo de borde a la celda
+                cell.setCellStyle(style);
+            }
         }
 
+        File file = new File(getExternalFilesDir(null), preferencesuser.getString("nombre", "none") + "_" + preferencesuser.getString("num_documento", "none") + ".xls");
+        FileOutputStream outputStream = null;
+
+        try {
+            outputStream = new FileOutputStream(file);
+            wb.write(outputStream);
+            Toast.makeText(getApplicationContext(), "Documento exportado correctamente", Toast.LENGTH_LONG).show();
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+
+            Toast.makeText(getApplicationContext(), "Hubo un error en la exportación", Toast.LENGTH_LONG).show();
+            try {
+                outputStream.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        JavaMailAPI javaMailAPI = new JavaMailAPI(this, preferencesuser.getString("CorreoP", "none") + "", "Prueba paciente " + preferencesuser.getString("nombre", "none"), "Resultados obtenidos", getFilePath(), preferencesuser.getString("nombre", "none") + "_" + preferencesuser.getString("num_documento", "none") + ".xls");
+        javaMailAPI.execute();
+        salir();
+    }
+
+    private String getFilePath(){
+        SharedPreferences preferencesuser=getSharedPreferences("usur",MODE_PRIVATE);
+        ContextWrapper contextWrapper = new ContextWrapper(getApplicationContext());
+        File pdfDirectory = contextWrapper.getExternalFilesDir(null);
+        File file = new File(pdfDirectory, preferencesuser.getString("nombre","none")+"_"+preferencesuser.getString("num_documento","none")+".xls");
+        return file.getPath();
     }
 
 }
