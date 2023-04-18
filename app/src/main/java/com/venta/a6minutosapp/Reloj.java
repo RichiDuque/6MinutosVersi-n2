@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -36,6 +37,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -75,6 +79,7 @@ public class Reloj extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reloj);
+
         ArrayList<dataMinuto> listadeMinutos = new ArrayList<>();
 
         if (savedInstanceState != null) {
@@ -127,6 +132,112 @@ public class Reloj extends AppCompatActivity {
         dataList=new ArrayList<>();
         textcronometroMin.setText(minuto+"");
         textcronometroSeg.setText(segundos+"0");
+
+
+        new TapTargetSequence(this)
+                .targets(
+                        TapTarget.forView(btndetenciones,"Botón Detencion","Permite al usuario iniciar el cronómetro para registrar el tiempo que el paciente se detiene durante la prueba de 6 minutos. Al oprimir el botón de detenciones, se inicia el cronómetro, y al oprimirlo nuevamente, se detiene el cronómetro y se registra la detención.")
+                                .outerCircleColor(R.color.teal_200)
+                                .outerCircleAlpha(0.96f)
+                                .targetCircleColor(R.color.white)
+                                .titleTextSize(20)
+                                .titleTextColor(R.color.white)
+                                .descriptionTextSize(14)
+                                .descriptionTextColor(R.color.black)
+                                .textColor(R.color.black)
+                                .textTypeface(Typeface.SANS_SERIF)
+                                .dimColor(R.color.black)
+                                .drawShadow(true)
+                                .cancelable(false)
+                                .tintTarget(true)
+                                .transparentTarget(true)
+                                .targetRadius(60),
+                        TapTarget.forView(edFC,"Campos que debe llenar","Aquí es donde deberá llenar los campos correspondientes a los datos del paciente cada minuto durante la prueba de 6 minutos")
+                                .outerCircleColor(R.color.teal_200)
+                                .outerCircleAlpha(0.96f)
+                                .targetCircleColor(R.color.white)
+                                .titleTextSize(20)
+                                .titleTextColor(R.color.white)
+                                .descriptionTextSize(14)
+                                .descriptionTextColor(R.color.black)
+                                .textColor(R.color.black)
+                                .textTypeface(Typeface.SANS_SERIF)
+                                .dimColor(R.color.black)
+                                .drawShadow(true)
+                                .cancelable(false)
+                                .tintTarget(true)
+                                .transparentTarget(true)
+                                .targetRadius(60),
+                        TapTarget.forView(chronometer,"Cronómetro de las detenciones","Este cronómetro está diseñado para llevar el tiempo de las detenciones del paciente durante la prueba. Al presionar el botón \"Detencion\", se iniciará un cronómetro por aparte que registrará el tiempo total de la detención. Para detener el cronómetro, simplemente presione el botón de \"Detencion\" de nuevo.")
+                                .outerCircleColor(R.color.teal_200)
+                                .outerCircleAlpha(0.96f)
+                                .targetCircleColor(R.color.white)
+                                .titleTextSize(20)
+                                .titleTextColor(R.color.white)
+                                .descriptionTextSize(14)
+                                .descriptionTextColor(R.color.black)
+                                .textColor(R.color.black)
+                                .textTypeface(Typeface.SANS_SERIF)
+                                .dimColor(R.color.black)
+                                .drawShadow(true)
+                                .cancelable(false)
+                                .tintTarget(true)
+                                .transparentTarget(true)
+                                .targetRadius(60),
+                        TapTarget.forView(txtNoDetenciones,"Numero de detenciones"," Cada vez que se detenga el paciente y se oprima el botón de detenciones, se sumará una detención y se actualizará el número en el campo.")
+                                .outerCircleColor(R.color.teal_200)
+                                .outerCircleAlpha(0.96f)
+                                .targetCircleColor(R.color.white)
+                                .titleTextSize(20)
+                                .titleTextColor(R.color.white)
+                                .descriptionTextSize(14)
+                                .descriptionTextColor(R.color.black)
+                                .textColor(R.color.black)
+                                .textTypeface(Typeface.SANS_SERIF)
+                                .dimColor(R.color.black)
+                                .drawShadow(true)
+                                .cancelable(false)
+                                .tintTarget(true)
+                                .transparentTarget(true)
+                                .targetRadius(60),
+                        TapTarget.forView(btn_Start_Stop,"Botón PLAY","Antes de presionar el botón de PLAY para iniciar la prueba, asegúrese de haber llenado toda la información del paciente en reposo. Una vez que haya llenado todos los campos necesarios, presione el botón de PLAY para comenzar la prueba de 6 minutos.")
+                                .outerCircleColor(R.color.red)
+                                .outerCircleAlpha(0.96f)
+                                .targetCircleColor(R.color.white)
+                                .titleTextSize(20)
+                                .titleTextColor(R.color.white)
+                                .descriptionTextSize(14)
+                                .descriptionTextColor(R.color.white)
+                                .textColor(R.color.white)
+                                .textTypeface(Typeface.SANS_SERIF)
+                                .dimColor(R.color.white)
+                                .drawShadow(true)
+                                .cancelable(false)
+                                .tintTarget(true)
+                                .transparentTarget(true)
+                                .targetRadius(60)).listener(new TapTargetSequence.Listener() {
+                    @Override
+                    public void onSequenceFinish() {
+
+                        Toast.makeText(Reloj.this,"Llene los campos del paciente en reposo",Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
+
+
+
+                    }
+
+                    @Override
+                    public void onSequenceCanceled(TapTarget lastTarget) {
+
+                    }
+                }).start();
+
+
+
 
         InputFilter inputFilterFC = new InputFilter() {
 
@@ -289,6 +400,10 @@ public class Reloj extends AppCompatActivity {
 
 
     }
+    @Override
+    public void onBackPressed() {
+        // No hacemos nada para bloquear el botón de retroceso
+    }
 
 
 
@@ -331,7 +446,7 @@ public class Reloj extends AppCompatActivity {
                 segundos++;
 
                 try {
-                    Thread.sleep(50);//Interrumpe por un segundo el ciclo de repetición, dando la percepción de tiempo
+                    Thread.sleep(500);//Interrumpe por un segundo el ciclo de repetición, dando la percepción de tiempo
                 } catch (InterruptedException e) {
                     e.printStackTrace();//Impresión por consola del error generado durante el sleep
                 }
@@ -601,7 +716,7 @@ public class Reloj extends AppCompatActivity {
                 segundos++;
 
                 try {
-                    Thread.sleep(50);//Interrumpe por un segundo el ciclo de repetición, dando la percepción de tiempo
+                    Thread.sleep(500);//Interrumpe por un segundo el ciclo de repetición, dando la percepción de tiempo
                 } catch (InterruptedException e) {
                     e.printStackTrace();//Impresión por consola del error generado durante el sleep
                 }
@@ -748,21 +863,7 @@ public class Reloj extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        edFC=findViewById(R.id.editTextdeFC);
-        edSat=findViewById(R.id.editTextdeSat);
-        edTas=findViewById(R.id.editTextdeTas);
-        String valueFC = edFC.getText().toString();
-        String valueSAT = edSat.getText().toString();
-        String valueTAS = edTas.getText().toString();
 
-        outState.putString("valueFC", valueFC);
-        outState.putString("valueSAT", valueSAT);
-        outState.putString("valueTAS", valueTAS);
-        outState.putSerializable("dataMinuto", (Serializable) dataList);
-    }
 
 
 

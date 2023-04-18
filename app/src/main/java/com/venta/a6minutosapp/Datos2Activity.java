@@ -23,6 +23,8 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.text.DecimalFormat;
+
 public class Datos2Activity extends AppCompatActivity {
 
     FloatingActionButton btnsiguientemedicamentos;
@@ -92,7 +94,12 @@ public class Datos2Activity extends AppCompatActivity {
         try {
            double edadint=Integer.parseInt(preferences.getString("edad","1"));
            edadint =208.75-(0.73*edadint);
-           editFC.setText(edadint+"");
+
+            DecimalFormat df = new DecimalFormat("#.##");
+            String rounded = df.format(edadint);
+
+
+            editFC.setText(rounded);
         }catch (Exception e ){
             editFC.setText("208");
         }

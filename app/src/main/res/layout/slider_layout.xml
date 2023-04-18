@@ -12,10 +12,11 @@
         android:id="@+id/texttitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="@font/poppins"
         android:text="Instrucciones antes
 de empezar"
+
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="28dp"/>
@@ -24,6 +25,7 @@ de empezar"
         android:id="@+id/textdeccription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:justificationMode="inter_word"
         android:layout_marginHorizontal="30dp"
         android:fontFamily="@font/poppins"
         android:layout_marginTop="50dp"

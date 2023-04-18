@@ -69,6 +69,10 @@ public class Datos1Activity extends AppCompatActivity {
         });
 
     }
+    @Override
+    public void onBackPressed() {
+        // No hacemos nada para bloquear el botón de retroceso
+    }
 
     private void muestraCalendario(View view) {
         DatePickerDialog d=new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {

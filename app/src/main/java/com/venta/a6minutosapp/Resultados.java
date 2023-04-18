@@ -339,11 +339,20 @@ public class Resultados extends AppCompatActivity {
         edadint=roundedNumber;
         edadint =208.75-(0.73*edadint);
         //FCMT&,FCMAlcanzado__,sesentaFC__,ochentaFC__,DIF__FC,FC__Recp;
+
+
+        DecimalFormat df3 = new DecimalFormat("#.##");
+        String rounded = df3.format(edadint);
+        try {
+            edadint=Double.parseDouble(rounded);
+        }catch (Exception e){
+
+        }
+
         FCMT__=edadint;
         FC_maximo.setText(edadint+"");
         double aux=(FCMaximaEncontrada/edadint)*100;
 
-        double number = 3.14159265359;
         DecimalFormat df = new DecimalFormat("#.##");
 
 
@@ -437,6 +446,8 @@ public class Resultados extends AppCompatActivity {
         try{TA__=TaMaximaEncontrada-Ta.get(0);}catch (Exception e){}
 
     }
+
+
 
     private void salir(){
         final Dialog dialog=new Dialog(this);
