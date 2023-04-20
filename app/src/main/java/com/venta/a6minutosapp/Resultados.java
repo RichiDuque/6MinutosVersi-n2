@@ -209,6 +209,10 @@ public class Resultados extends AppCompatActivity {
         editor.putString("TA__",TA__+"");
         editor.putString("Dif__Sat",Dif__Sat+"");
         editor.putString("Troster__",Troster__+"");
+
+        editor.putString("VO2MAX__",VO2__+"");
+        editor.putString("METS__",METS__+"");
+
         editor.putString("Formula",Formula);
         editor.putString("PercentDista__",PercentDista__+"");
         editor.putString("NoVueltas__",getIntent().getExtras().getString("noVueltas"));
