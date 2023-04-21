@@ -180,8 +180,10 @@ public class Datos2Activity extends AppCompatActivity {
         editFC.setText(preferences.getString("FC-teorica",""));
         if(preferences.getString("sexo","").equals("Hombre")){
             spSexo.setSelection(1);
-        }else {
+        }else if(preferences.getString("sexo","").equals("Femenino")){
             spSexo.setSelection(2);
+        }else{
+            spSexo.setSelection(0);
         }
         try {
             spPeso.setText(preferences.getString("peso",""));
