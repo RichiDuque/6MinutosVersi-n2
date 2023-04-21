@@ -33,11 +33,11 @@ private int selectedTabNumber=1;
         TabItem1=findViewById(R.id.TabItem1);
         TabItem2=findViewById(R.id.TabItem2);
         Bundle datos = getIntent().getExtras();
-        String sexo = "Hombre";
+        String sexo;
         try {
             sexo = datos.getString("sexo");
         }catch (Exception e){
-            sexo = "Hombre";
+            sexo = "Masculino";
         }
 
 
@@ -50,7 +50,7 @@ private int selectedTabNumber=1;
             startActivity(intent);
         });
 
-        if (sexo.equals("Hombre")){
+        if (sexo.equals("Masculino")){
             selectTab(1);
         }else{
             selectTab(2);

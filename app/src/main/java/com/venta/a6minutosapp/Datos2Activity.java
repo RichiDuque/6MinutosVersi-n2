@@ -178,7 +178,7 @@ public class Datos2Activity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("usur", MODE_PRIVATE);
 
         editFC.setText(preferences.getString("FC-teorica",""));
-        if(preferences.getString("sexo","").equals("Hombre")){
+        if(preferences.getString("sexo","").equals("Masculino")){
             spSexo.setSelection(1);
         }else if(preferences.getString("sexo","").equals("Femenino")){
             spSexo.setSelection(2);
