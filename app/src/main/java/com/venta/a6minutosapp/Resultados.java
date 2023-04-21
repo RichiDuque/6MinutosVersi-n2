@@ -503,10 +503,35 @@ public class Resultados extends AppCompatActivity {
         Button buttonSi=dialog.findViewById(R.id.ButtonSi);
         Button buttonNo=dialog.findViewById(R.id.ButtonNo);
         buttonSi.setOnClickListener(view -> {
+            SharedPreferences sharedPreferences = getSharedPreferences("usur", MODE_PRIVATE);
+            String correo = sharedPreferences.getString("CorreoP","");
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.apply();
+
+
+            SharedPreferences preferentResult = getSharedPreferences("result", MODE_PRIVATE);
+            SharedPreferences.Editor editorResult = preferentResult.edit();
+            editorResult.clear();
+            editorResult.apply();
+
+            SharedPreferences preferences = getSharedPreferences("usur", MODE_PRIVATE);
+            SharedPreferences.Editor editornuevo = preferences.edit();
+            editornuevo.putString("CorreoP", correo);
+            editornuevo.commit();
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
         });
         buttonNo.setOnClickListener(view -> {
+            SharedPreferences sharedPreferences = getSharedPreferences("usur", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.apply();
+
+            SharedPreferences preferentResult = getSharedPreferences("result", MODE_PRIVATE);
+            SharedPreferences.Editor editorResult = preferentResult.edit();
+            editorResult.clear();
+            editorResult.apply();
             finishAffinity();
         });
         dialog.show();
@@ -706,7 +731,7 @@ public class Resultados extends AppCompatActivity {
 
         row = sheet.createRow(24);
         cell = row.createCell(0);
-        cell.setCellValue("Troster");
+        cell.setCellValue(preferencesuser.getString("formula", "none"));
 
         cell = row.createCell(1);
         cell.setCellValue(preferencesresult.getString("Troster__", "none"));
@@ -716,14 +741,36 @@ public class Resultados extends AppCompatActivity {
         cell.setCellValue("VO2__");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("Troster__", "none"));
+        cell.setCellValue(preferencesresult.getString("VO2MAX__", "none"));
 
         row = sheet.createRow(26);
         cell = row.createCell(0);
         cell.setCellValue("METS_");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("Troster__", "none"));
+        cell.setCellValue(preferencesresult.getString("METS__", "none"));
+
+        row = sheet.createRow(27);
+        cell = row.createCell(0);
+        cell.setCellValue("N° Detenciones");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesresult.getString("NoDetencion", "none"));
+
+        row = sheet.createRow(28);
+        cell = row.createCell(0);
+        cell.setCellValue("Duración total de detenciones");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesresult.getString("Duracion_Detencion", "none"));
+
+        row = sheet.createRow(29);
+        cell = row.createCell(0);
+        cell.setCellValue("N° de vueltas");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesresult.getString("NoVueltas__", "none"));
+
 
         cell = sheet.getRow(0).getCell(0);
         // Establecer ancho de columna
@@ -734,7 +781,7 @@ public class Resultados extends AppCompatActivity {
         sheet.setColumnWidth(cell.getColumnIndex(), 5000);
 
         // Obtener celda o rango de celdas
-        CellRangeAddress range = CellRangeAddress.valueOf("A1:B22");
+        CellRangeAddress range = CellRangeAddress.valueOf("A1:B30");
         for (int row2 = range.getFirstRow(); row2 <= range.getLastRow(); row2++) {
             for (int col = range.getFirstColumn(); col <= range.getLastColumn(); col++) {
                 cell = sheet.getRow(row2).getCell(col);
