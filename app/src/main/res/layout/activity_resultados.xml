@@ -274,11 +274,7 @@
                         android:id="@+id/imageView5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
-                        app:srcCompat="@drawable/fcres"
-
-
-                        />
+                        app:srcCompat="@drawable/fcres" />
 
                     <TextView
                         android:id="@+id/FC_Máximo"

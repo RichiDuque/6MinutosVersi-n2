@@ -470,7 +470,7 @@ public class Reloj extends AppCompatActivity {
                 segundos++;
 
                 try {
-                    Thread.sleep(10);//Interrumpe por un segundo el ciclo de repetición, dando la percepción de tiempo
+                    Thread.sleep(1000);//Interrumpe por un segundo el ciclo de repetición, dando la percepción de tiempo
                 } catch (InterruptedException e) {
                     e.printStackTrace();//Impresión por consola del error generado durante el sleep
                 }
@@ -740,7 +740,7 @@ public class Reloj extends AppCompatActivity {
                 segundos++;
 
                 try {
-                    Thread.sleep(10);//Interrumpe por un segundo el ciclo de repetición, dando la percepción de tiempo
+                    Thread.sleep(1000);//Interrumpe por un segundo el ciclo de repetición, dando la percepción de tiempo
                 } catch (InterruptedException e) {
                     e.printStackTrace();//Impresión por consola del error generado durante el sleep
                 }
