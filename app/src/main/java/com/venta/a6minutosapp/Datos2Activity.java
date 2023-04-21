@@ -28,7 +28,8 @@ import java.text.DecimalFormat;
 public class Datos2Activity extends AppCompatActivity {
 
     FloatingActionButton btnsiguientemedicamentos;
-    Spinner spSexo,spPeso;
+    Spinner spSexo;
+    EditText spPeso;
 
     TextView datos1;
     EditText editFC, spMts,spCm;
@@ -106,12 +107,12 @@ public class Datos2Activity extends AppCompatActivity {
 
         btnsiguientemedicamentos.setOnClickListener(view -> {
 
-            if(editFC.getText().toString().equals("")||spSexo.getSelectedItem().toString().equals("Sexo")||spPeso.getSelectedItem().toString().equals("Peso")||spMts.getText().toString().equals("")||spCm.getText().toString().equals("")){
+            if(editFC.getText().toString().equals("")||spSexo.getSelectedItem().toString().equals("Sexo")||spPeso.getText().toString().isEmpty()||spMts.getText().toString().equals("")||spCm.getText().toString().equals("")){
                 Toast.makeText(this, "Llene primero todos los campos antes de continuar", Toast.LENGTH_SHORT).show();
             }else {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("sexo", spSexo.getSelectedItem().toString());
-                editor.putString("peso", spPeso.getSelectedItem().toString());
+                editor.putString("peso", spPeso.getText().toString());
                 editor.putString("Talla-mts", spMts.getText().toString());
                 editor.putString("FC-teorica", editFC.getText().toString());
                 editor.putString("Talla-cm", spCm.getText().toString());
@@ -179,13 +180,15 @@ public class Datos2Activity extends AppCompatActivity {
         editFC.setText(preferences.getString("FC-teorica",""));
         if(preferences.getString("sexo","").equals("Hombre")){
             spSexo.setSelection(1);
-        }else {
+        }else if(preferences.getString("sexo","").equals("Femenino")){
             spSexo.setSelection(2);
+        }else{
+            spSexo.setSelection(0);
         }
         try {
-            spPeso.setSelection(Integer.parseInt(preferences.getString("peso","")));
+            spPeso.setText(preferences.getString("peso",""));
         }catch (Exception E){
-            spPeso.setSelection(Integer.parseInt(preferences.getString("peso","0")));
+            spPeso.setText(preferences.getString("peso","0"));
         }
 
         spMts.setText(preferences.getString("Talla-mts",""));

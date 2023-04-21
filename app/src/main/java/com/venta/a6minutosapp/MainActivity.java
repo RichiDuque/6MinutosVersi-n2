@@ -45,15 +45,15 @@ public class MainActivity extends AppCompatActivity {
 
         btnEmpezar.setOnClickListener(view -> {
 
-            Intent intent = new Intent(this, Reloj.class);
+            //Intent intent = new Intent(this, Reloj.class);
             //Intent intent = new Intent(this, FormulasActivity.class);
-            startActivity(intent);
+            //startActivity(intent);
 
             if(preferences.getString("CorreoP","").isEmpty()){
                 Toast.makeText(this,"Debe ingresar un correo electronico",Toast.LENGTH_SHORT);
                 correo();
             }else {
-                 intent = new Intent(this, Datos1Activity.class);
+                Intent intent = new Intent(this, Datos1Activity.class);
                 //Intent intent = new Intent(this, FormulasActivity.class);
                 startActivity(intent);
             }

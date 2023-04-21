@@ -133,8 +133,10 @@ public class Datos1Activity extends AppCompatActivity {
             spTDOC.setSelection(1);
         }else if(preferences.getString("tipo_documento","").equals("Tarjeta de identidad")){
             spTDOC.setSelection(2);
-        }else {
+        }else if(preferences.getString("tipo_documento","").equals("Pasaporte")){
             spTDOC.setSelection(3);
+        }else{
+            spTDOC.setSelection(0);
         }
     }
 }
