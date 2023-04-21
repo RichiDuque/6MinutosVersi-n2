@@ -83,6 +83,7 @@
                 android:layout_alignStart="@+id/spinnerSexo"
                 android:hint="Peso"
                 android:padding="10dp"
+                android:inputType="number"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/custom_datos"
                 android:layout_below="@id/spinnerSexo"/>

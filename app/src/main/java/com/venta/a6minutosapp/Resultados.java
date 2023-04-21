@@ -171,7 +171,7 @@ public class Resultados extends AppCompatActivity {
         TextView txRep  = dialog.findViewById(R.id.textView6);
 
         // Define el formato para cada columna
-        String formato = "%-10s %-3s %-6s %-3s %-3s %-4s %-6s\n";
+        String formato = "%-10s %-3s %-4s %-3s %-3s %-4s %-6s\n";
 // Imprime los encabezados de las columnas
         StringBuilder sb = new StringBuilder();
         sb.append(String.format(formato, "Minuto", "FC", "Satur.", "TAS", "TAD", "MMII", "Disnea"));
