@@ -71,6 +71,7 @@ public class FragmentTwo extends Fragment {
         SharedPreferences preferences= getContext().getSharedPreferences("usur",MODE_PRIVATE);
 
         enrightF.setOnClickListener(view -> {
+            Toast.makeText(getContext(), "Ha escogido Enright, género Femenino", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getContext(), Walk.class);
             SharedPreferences.Editor editor=preferences.edit();
             editor.putString("formula","Enright");
@@ -78,6 +79,7 @@ public class FragmentTwo extends Fragment {
             startActivity(intent);
         });
         troosterF.setOnClickListener(view -> {
+            Toast.makeText(getContext(), "Ha escogido Trooster, género Femenino", Toast.LENGTH_SHORT).show();
             SharedPreferences.Editor editor=preferences.edit();
             editor.putString("formula","Trooster");
             editor.commit();
@@ -85,6 +87,7 @@ public class FragmentTwo extends Fragment {
             startActivity(intent);
         });
         gibbonsF.setOnClickListener(view -> {
+            Toast.makeText(getContext(), "Ha escogido Gibbons, género Femenino", Toast.LENGTH_SHORT).show();
             SharedPreferences.Editor editor=preferences.edit();
             editor.putString("formula","Gibbons");
             editor.commit();

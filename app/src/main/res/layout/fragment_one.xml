@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:background="@drawable/custom_boton"
+            android:layout_marginTop="30dp"
             android:backgroundTint="@color/azul"
             android:elevation="1dp"
             android:padding="5dp"
@@ -30,8 +31,7 @@
         "
             android:textColor="@color/black"
             android:padding="15dp"
-            android:backgroundTint="#D9D9D9"
-            android:background="@drawable/custom_boton"
+            android:background="@drawable/button_selector"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="20dp"
             android:layout_alignTop="@id/text40"/>
@@ -58,8 +58,7 @@
             android:text="218(5.14 x estatura(cm)-532 x edad(años)-[(1.80 x Peso Kg)+(51.31 x Sexo)]\n(Hombres:1 , Mujeres:0)"
             android:textColor="@color/black"
             android:padding="15dp"
-            android:backgroundTint="#D9D9D9"
-            android:background="@drawable/custom_boton"
+            android:background="@drawable/button_selector"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="20dp"
             android:layout_alignTop="@id/text70"/>
@@ -86,8 +85,7 @@
             android:text="686.8 - (2.29 x edad años)-(74.7 x Sexo) \n(hombres: 1, mujeres: 0)"
             android:textColor="@color/black"
             android:padding="15dp"
-            android:backgroundTint="#D9D9D9"
-            android:background="@drawable/custom_boton"
+            android:background="@drawable/button_selector"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="20dp"
             android:layout_alignTop="@id/text50"/>

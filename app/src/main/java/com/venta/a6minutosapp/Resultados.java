@@ -53,7 +53,7 @@ public class Resultados extends AppCompatActivity {
     TextView DIF_Presion,DIF_Sat;
     TextView textoFormula,txttroster,txtperceDistancia;
     //Paciente
-    TextView txtNombreP,txtEdadP,txtAlturaP,txtPesoP,txtIMCP,txtCedulaP,txtFechaNP,txtFCMTP;  ;
+    TextView txtNombreP,txtEdadP,txtAlturaP,txtPesoP,txtIMCP,txtCedulaP,txtFechaNP,txtFCMTP,txtNoDeten,txtTiempoDeten;
 
     double FCMT__,FCMAlcanzado__,sesentaFC__,ochentaFC__,DIF__FC,FC__Recp;
     double TA__,Dif__Sat;
@@ -63,6 +63,7 @@ public class Resultados extends AppCompatActivity {
     String Formula;
     double VO2__,METS__;
     TextView txtVOmax,txtMETs;
+
     ArrayList<dataMinuto> dataList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +88,7 @@ public class Resultados extends AppCompatActivity {
         //aeróbica
         txtVOmax=findViewById(R.id.txtVOmax);
         txtMETs=findViewById(R.id.txtMETs);
+
         //paciente
         txtNombreP=findViewById(R.id.txtNombre);
         txtEdadP=findViewById(R.id.txtEdad);
@@ -97,6 +99,8 @@ public class Resultados extends AppCompatActivity {
         txtFechaNP=findViewById(R.id.txtFechaNacimiento);
         txtFCMTP=findViewById(R.id.txtFCPaciente);
         BtnReferencia = findViewById(R.id.btnReferencias);
+        txtNoDeten=findViewById(R.id.txtNoDeten);
+        txtTiempoDeten=findViewById(R.id.txtTiempoDeten);
 
         dialog=new Dialog(Resultados.this);
 
@@ -166,21 +170,55 @@ public class Resultados extends AppCompatActivity {
         dialog.setCanceledOnTouchOutside(false);
         TextView txRep  = dialog.findViewById(R.id.textView6);
 
+        // Define el formato para cada columna
+        String formato = "%-10s %-3s %-6s %-3s %-3s %-4s %-6s\n";
+// Imprime los encabezados de las columnas
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format(formato, "Minuto", "FC", "Satur.", "TAS", "TAD", "MMII", "Disnea"));
+// Imprime una línea separadora
+        sb.append("------------------------------------\n");
+
+        for (dataMinuto data : dataList) {
+            // Agrega cada valor en su columna correspondiente a la cadena
+            sb.append(String.format(formato, data.getMinuto(), data.getFC(), data.getSaturacion(), data.getTAS(),
+                    data.getTAD(), data.getMMII(), data.getDisnea()));
+        }
+
+// Establece la cadena de texto construida en el TextView
+
+        txRep.setText(sb.toString());
+
 
         String resu="";
-
+        int aux=0;
+        /*
         for (dataMinuto objeto : dataList) {
 
-            resu+=objeto.getMinuto()+"     ";
-            resu+=objeto.getFC()+"     ";
+            switch (aux){
+                case 0:resu+=objeto.getMinuto()+"          ";break;
+                case 1:resu+=objeto.getMinuto()+"        ";break;
+                case 2:resu+=objeto.getMinuto()+"         ";break;
+                case 3:resu+=objeto.getMinuto()+"        ";break;
+                case 4:resu+=objeto.getMinuto()+"   ";break;
+                case 5:resu+=objeto.getMinuto()+"     ";break;
+                case 6:resu+=objeto.getMinuto()+"    ";break;
+                case 7:resu+=objeto.getMinuto()+"       ";break;
+                case 8:resu+=objeto.getMinuto()+"       ";break;
+                case 9:resu+=objeto.getMinuto()+"       ";break;
+                default:resu+=objeto.getMinuto()+"       ";break;
+
+            }
+            aux++;
+
+            resu+=objeto.getFC()+"       ";
             resu+= objeto.getSaturacion()+"        ";
             resu+= objeto.getTAS()+"        ";
             resu+= objeto.getTAD()+"        ";
             resu+= objeto.getMMII()+"        ";
             resu+= objeto.getDisnea()+"\n";
 
-        }
-        txRep.setText(resu);
+        }*/
+
 
 
         dialog.show();
@@ -217,6 +255,8 @@ public class Resultados extends AppCompatActivity {
         editor.putString("PercentDista__",PercentDista__+"");
         editor.putString("NoVueltas__",getIntent().getExtras().getString("noVueltas"));
         editor.putString("NoDetencion",getIntent().getExtras().getString("noDetencion"));
+        txtNoDeten.setText(getIntent().getExtras().getString("noDetencion"));
+        txtTiempoDeten.setText(duringDetencion);
         editor.putString("Duracion_Detencion",duringDetencion);
 
 
@@ -245,6 +285,7 @@ public class Resultados extends AppCompatActivity {
         txtCedulaP.setText(preferences.getString("num_documento","none"));
         txtFechaNP.setText(preferences.getString("fecha_nacimiento","none"));
         txtFCMTP.setText("FC Teo "+FCMT__);
+
         try {
             Altura= Integer.parseInt(preferences.getString("Talla-mts","none"));
 

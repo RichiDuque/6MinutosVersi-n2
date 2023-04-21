@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:background="#00000000"
         android:textColor="@color/black"
+        android:layout_margin="15dp"
         android:text="Saltar"
         android:fontFamily="@font/nunito_light"
         android:textSize="20sp"

@@ -34,6 +34,7 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,6 +68,9 @@ public class Reloj extends AppCompatActivity {
 
     int noDetenciones;
     long tiempo_Detención;
+
+    ImageView imageView8;
+    TextView textView7;
 
     EditText edFC,edSat,edTas,edTad,edMI,edDisnea;
 
@@ -127,6 +131,10 @@ public class Reloj extends AppCompatActivity {
         edTad=findViewById(R.id.editTextdeTad);
         edMI=findViewById(R.id.editTextdeMI);
         edDisnea=findViewById(R.id.editTextdeDisnea);
+        //Novueltas
+        imageView8=findViewById(R.id.imageView8);
+        textView7=findViewById(R.id.textView7);
+
 
         Recycler=findViewById(R.id.Recycler);
         dataList=new ArrayList<>();
@@ -152,7 +160,7 @@ public class Reloj extends AppCompatActivity {
                                 .tintTarget(true)
                                 .transparentTarget(true)
                                 .targetRadius(60),
-                        TapTarget.forView(edFC,"Campos que debe llenar","Aquí es donde deberá llenar los campos correspondientes a los datos del paciente cada minuto durante la prueba de 6 minutos")
+                        TapTarget.forView(textView7,"Campos que debe llenar","Aquí es donde deberá llenar los campos correspondientes a los datos del paciente cada minuto durante la prueba de 6 minutos")
                                 .outerCircleColor(R.color.teal_200)
                                 .outerCircleAlpha(0.96f)
                                 .targetCircleColor(R.color.white)
@@ -168,7 +176,7 @@ public class Reloj extends AppCompatActivity {
                                 .tintTarget(true)
                                 .transparentTarget(true)
                                 .targetRadius(60),
-                        TapTarget.forView(chronometer,"Cronómetro de las detenciones","Este cronómetro está diseñado para llevar el tiempo de las detenciones del paciente durante la prueba. Al presionar el botón \"Detencion\", se iniciará un cronómetro por aparte que registrará el tiempo total de la detención. Para detener el cronómetro, simplemente presione el botón de \"Detencion\" de nuevo.")
+                        TapTarget.forView(chronometer,"Cronómetro de las detenciones","Este cronómetro está diseñado para llevar el tiempo de las detenciones del paciente durante la prueba. Al presionar el botón \"Detencion\", se iniciará un cronómetro por aparte que registrará el tiempo total de la detención. Para detener el cronómetro, presione el botón de \"Detencion\" de nuevo.")
                                 .outerCircleColor(R.color.teal_200)
                                 .outerCircleAlpha(0.96f)
                                 .targetCircleColor(R.color.white)
@@ -200,17 +208,33 @@ public class Reloj extends AppCompatActivity {
                                 .tintTarget(true)
                                 .transparentTarget(true)
                                 .targetRadius(60),
-                        TapTarget.forView(btn_Start_Stop,"Botón PLAY","Antes de presionar el botón de PLAY para iniciar la prueba, asegúrese de haber llenado toda la información del paciente en reposo. Una vez que haya llenado todos los campos necesarios, presione el botón de PLAY para comenzar la prueba de 6 minutos.")
-                                .outerCircleColor(R.color.red)
+                        TapTarget.forView(imageView8,"Agragar número de vueltas"," Con esta opción podrá agregar o eliminar una vuelta cada vez que presione el botón correspondiente. ")
+                                .outerCircleColor(R.color.teal_200)
                                 .outerCircleAlpha(0.96f)
                                 .targetCircleColor(R.color.white)
                                 .titleTextSize(20)
                                 .titleTextColor(R.color.white)
                                 .descriptionTextSize(14)
-                                .descriptionTextColor(R.color.white)
-                                .textColor(R.color.white)
+                                .descriptionTextColor(R.color.black)
+                                .textColor(R.color.black)
                                 .textTypeface(Typeface.SANS_SERIF)
-                                .dimColor(R.color.white)
+                                .dimColor(R.color.black)
+                                .drawShadow(true)
+                                .cancelable(false)
+                                .tintTarget(true)
+                                .transparentTarget(true)
+                                .targetRadius(60),
+                        TapTarget.forView(btn_Start_Stop,"Botón PLAY","Antes de presionar el botón de PLAY para iniciar la prueba, asegúrese de haber llenado toda la información del paciente en reposo. Una vez que haya llenado todos los campos necesarios, presione el botón de PLAY para comenzar la prueba de 6 minutos.")
+                                .outerCircleColor(R.color.teal_200)
+                                .outerCircleAlpha(0.96f)
+                                .targetCircleColor(R.color.white)
+                                .titleTextSize(20)
+                                .titleTextColor(R.color.white)
+                                .descriptionTextSize(14)
+                                .descriptionTextColor(R.color.black)
+                                .textColor(R.color.black)
+                                .textTypeface(Typeface.SANS_SERIF)
+                                .dimColor(R.color.black)
                                 .drawShadow(true)
                                 .cancelable(false)
                                 .tintTarget(true)
@@ -446,7 +470,7 @@ public class Reloj extends AppCompatActivity {
                 segundos++;
 
                 try {
-                    Thread.sleep(500);//Interrumpe por un segundo el ciclo de repetición, dando la percepción de tiempo
+                    Thread.sleep(10);//Interrumpe por un segundo el ciclo de repetición, dando la percepción de tiempo
                 } catch (InterruptedException e) {
                     e.printStackTrace();//Impresión por consola del error generado durante el sleep
                 }
@@ -716,7 +740,7 @@ public class Reloj extends AppCompatActivity {
                 segundos++;
 
                 try {
-                    Thread.sleep(500);//Interrumpe por un segundo el ciclo de repetición, dando la percepción de tiempo
+                    Thread.sleep(10);//Interrumpe por un segundo el ciclo de repetición, dando la percepción de tiempo
                 } catch (InterruptedException e) {
                     e.printStackTrace();//Impresión por consola del error generado durante el sleep
                 }
