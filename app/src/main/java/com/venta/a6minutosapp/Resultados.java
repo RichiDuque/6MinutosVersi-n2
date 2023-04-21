@@ -614,80 +614,116 @@ public class Resultados extends AppCompatActivity {
 
         row = sheet.createRow(11);
         cell = row.createCell(0);
-        cell.setCellValue("FC-teorica");
+        cell.setCellValue("");
+
+        cell = row.createCell(1);
+        cell.setCellValue("");
+
+        row = sheet.createRow(12);
+        cell = row.createCell(0);
+        cell.setCellValue("FC-teórica");
 
         cell = row.createCell(1);
         cell.setCellValue(preferencesuser.getString("FC-teorica", "none"));
 
-        row = sheet.createRow(12);
-        cell = row.createCell(0);
-        cell.setCellValue("FC-Relativa");
-
-        cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("FC__Recp", "none"));
-
         row = sheet.createRow(13);
         cell = row.createCell(0);
-        cell.setCellValue("FCM Alcanzado");
+        cell.setCellValue("FCM Alcanzada");
 
         cell = row.createCell(1);
         cell.setCellValue(preferencesresult.getString("FCMAlcanzado__", "none"));
 
         row = sheet.createRow(14);
         cell = row.createCell(0);
-        cell.setCellValue("PercentDista");
-
-        cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("PercentDista__", "none"));
-
-        row = sheet.createRow(15);
-        cell = row.createCell(0);
-        cell.setCellValue("Troster");
-
-        cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("Troster__", "none"));
-
-        row = sheet.createRow(16);
-        cell = row.createCell(0);
-        cell.setCellValue("FCMT");
-
-        cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("FCMT__", "none"));
-
-        row = sheet.createRow(17);
-        cell = row.createCell(0);
-        cell.setCellValue("sesentaFC");
+        cell.setCellValue("65%");
 
         cell = row.createCell(1);
         cell.setCellValue(preferencesresult.getString("sesentaFC__", "none"));
 
-        row = sheet.createRow(18);
+        row = sheet.createRow(15);
         cell = row.createCell(0);
-        cell.setCellValue("Déficit Saturación");
+        cell.setCellValue("85%");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("Dif__Sat", "none"));
+        cell.setCellValue(preferencesresult.getString("ochentaFC__", "none"));
+
+        row = sheet.createRow(16);
+        cell = row.createCell(0);
+        cell.setCellValue("DIF__FC");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesresult.getString("DIF__FC", "none"));
+
+
+        row = sheet.createRow(17);
+        cell = row.createCell(0);
+        cell.setCellValue("FC__Recp");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesresult.getString("FC__Recp", "none"));
+
+        row = sheet.createRow(18);
+        cell = row.createCell(0);
+        cell.setCellValue("");
+
+        cell = row.createCell(1);
+        cell.setCellValue("");
 
         row = sheet.createRow(19);
         cell = row.createCell(0);
-        cell.setCellValue("TA");
+        cell.setCellValue("DIF_TA");
 
         cell = row.createCell(1);
         cell.setCellValue(preferencesresult.getString("TA__", "none"));
 
         row = sheet.createRow(20);
         cell = row.createCell(0);
-        cell.setCellValue("ochenta FC");
+        cell.setCellValue("DIF_SAT");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("ochentaFC__", "none"));
+        cell.setCellValue(preferencesresult.getString("Dif__Sat", "none"));
 
         row = sheet.createRow(21);
         cell = row.createCell(0);
-        cell.setCellValue("Déficit FC");
+        cell.setCellValue("");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("DIF__FC", "none"));
+        cell.setCellValue("");
+
+        row = sheet.createRow(22);
+        cell = row.createCell(0);
+        cell.setCellValue("PercentDista");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesresult.getString("PercentDista__", "none"));
+
+        row = sheet.createRow(23);
+        cell = row.createCell(0);
+        cell.setCellValue("");
+
+        cell = row.createCell(1);
+        cell.setCellValue("");
+
+        row = sheet.createRow(24);
+        cell = row.createCell(0);
+        cell.setCellValue("Troster");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesresult.getString("Troster__", "none"));
+
+        row = sheet.createRow(25);
+        cell = row.createCell(0);
+        cell.setCellValue("VO2__");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesresult.getString("Troster__", "none"));
+
+        row = sheet.createRow(26);
+        cell = row.createCell(0);
+        cell.setCellValue("METS_");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesresult.getString("Troster__", "none"));
 
         cell = sheet.getRow(0).getCell(0);
         // Establecer ancho de columna
