@@ -61,7 +61,7 @@ public class FormulasaUsar {
 
                 break;
             case "Trooster":
-                respuesta=218*(5.14 * estatura(context)-532 * edad-((1.80 * peso )+(51.31 * sexo)));
+                respuesta=218+(5.14 * estatura(context))-(5.32 * edad)-(1.80 * peso )+(51.31 * sexo);
 
 
                 break;

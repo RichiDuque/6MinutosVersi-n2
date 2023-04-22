@@ -55,7 +55,7 @@
             android:id="@+id/text102"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="218(5.14 x estatura(cm)-532 x edad(años)-[(1.80 x Peso Kg)+(51.31 x Sexo)]\n(Hombres:1 , Mujeres:0)"
+            android:text="218+(5.14 x estatura(cm))-(5.32 x edad(años))-[(1.80 x Peso Kg)+(51.31 x Sexo)]\n(Hombres:1 , Mujeres:0)"
             android:textColor="@color/black"
             android:padding="15dp"
             android:background="@drawable/button_selector"
