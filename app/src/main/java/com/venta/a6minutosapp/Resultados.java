@@ -1,28 +1,21 @@
 package com.venta.a6minutosapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
-
-import android.content.DialogInterface;
-
 import android.content.ContextWrapper;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.button.MaterialButton;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.tabs.TabLayout;
 import com.venta.a6minutosapp.email.JavaMailAPI;
 
@@ -34,15 +27,12 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -109,7 +99,7 @@ public class Resultados extends AppCompatActivity {
         });
 
         BtnExportar.setOnClickListener(view -> {
-            ExportarExcel();
+            ExportarExcel(dataList);
         });
 
         BtnReferencia.setOnClickListener(view -> {
@@ -172,10 +162,10 @@ public class Resultados extends AppCompatActivity {
 
         // Define el formato para cada columna
         String formato = "%-10s %-3s %-4s %-3s %-3s %-4s %-6s\n";
-// Imprime los encabezados de las columnas
+        // Imprime los encabezados de las columnas
         StringBuilder sb = new StringBuilder();
         sb.append(String.format(formato, "Minuto", "FC", "Satur.", "TAS", "TAD", "MMII", "Disnea"));
-// Imprime una línea separadora
+        // Imprime una línea separadora
         sb.append("------------------------------------\n");
 
         for (dataMinuto data : dataList) {
@@ -184,7 +174,7 @@ public class Resultados extends AppCompatActivity {
                     data.getTAD(), data.getMMII(), data.getDisnea()));
         }
 
-// Establece la cadena de texto construida en el TextView
+        // Establece la cadena de texto construida en el TextView
 
         txRep.setText(sb.toString());
 
@@ -503,6 +493,7 @@ public class Resultados extends AppCompatActivity {
         Button buttonSi=dialog.findViewById(R.id.ButtonSi);
         Button buttonNo=dialog.findViewById(R.id.ButtonNo);
         buttonSi.setOnClickListener(view -> {
+            /*
             SharedPreferences sharedPreferences = getSharedPreferences("usur", MODE_PRIVATE);
             String correo = sharedPreferences.getString("CorreoP","");
             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -518,7 +509,7 @@ public class Resultados extends AppCompatActivity {
             SharedPreferences preferences = getSharedPreferences("usur", MODE_PRIVATE);
             SharedPreferences.Editor editornuevo = preferences.edit();
             editornuevo.putString("CorreoP", correo);
-            editornuevo.commit();
+            editornuevo.commit();*/
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
         });
@@ -541,9 +532,24 @@ public class Resultados extends AppCompatActivity {
         dialog.getWindow().setGravity(Gravity.BOTTOM);
     }
 
-    private void ExportarExcel() {
+    private void ExportarExcel(ArrayList<dataMinuto> dataList) {
         SharedPreferences preferencesuser = getSharedPreferences("usur", MODE_PRIVATE);
         SharedPreferences preferencesresult = getSharedPreferences("result", MODE_PRIVATE);
+
+        // Define el formato para cada columna
+        String formato = "%-10s %-3s %-4s %-3s %-3s %-4s %-6s\n";
+        // Imprime los encabezados de las columnas
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format(formato, "Minuto", "FC", "Satur.", "TAS", "TAD", "MMII", "Disnea"));
+        // Imprime una línea separadora
+        sb.append("------------------------------------\n");
+
+        for (dataMinuto data : dataList) {
+            // Agrega cada valor en su columna correspondiente a la cadena
+            sb.append(String.format(formato, data.getMinuto(), data.getFC(), data.getSaturacion(), data.getTAS(),
+                    data.getTAD(), data.getMMII(), data.getDisnea()));
+        }
+
         Workbook wb = new HSSFWorkbook();
         Cell cell = null;
 
@@ -771,6 +777,13 @@ public class Resultados extends AppCompatActivity {
         cell = row.createCell(1);
         cell.setCellValue(preferencesresult.getString("NoVueltas__", "none"));
 
+        row = sheet.createRow(30);
+        cell = row.createCell(0);
+        cell.setCellValue("");
+
+        cell = row.createCell(1);
+        cell.setCellValue(sb.toString());
+
 
         cell = sheet.getRow(0).getCell(0);
         // Establecer ancho de columna
@@ -781,7 +794,7 @@ public class Resultados extends AppCompatActivity {
         sheet.setColumnWidth(cell.getColumnIndex(), 5000);
 
         // Obtener celda o rango de celdas
-        CellRangeAddress range = CellRangeAddress.valueOf("A1:B30");
+        CellRangeAddress range = CellRangeAddress.valueOf("A1:B31");
         for (int row2 = range.getFirstRow(); row2 <= range.getLastRow(); row2++) {
             for (int col = range.getFirstColumn(); col <= range.getLastColumn(); col++) {
                 cell = sheet.getRow(row2).getCell(col);
