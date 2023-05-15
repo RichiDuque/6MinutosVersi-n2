@@ -536,19 +536,7 @@ public class Resultados extends AppCompatActivity {
         SharedPreferences preferencesuser = getSharedPreferences("usur", MODE_PRIVATE);
         SharedPreferences preferencesresult = getSharedPreferences("result", MODE_PRIVATE);
 
-        // Define el formato para cada columna
-        String formato = "%-10s %-3s %-4s %-3s %-3s %-4s %-6s\n";
-        // Imprime los encabezados de las columnas
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format(formato, "Minuto", "FC", "Satur.", "TAS", "TAD", "MMII", "Disnea"));
-        // Imprime una línea separadora
-        sb.append("------------------------------------\n");
 
-        for (dataMinuto data : dataList) {
-            // Agrega cada valor en su columna correspondiente a la cadena
-            sb.append(String.format(formato, data.getMinuto(), data.getFC(), data.getSaturacion(), data.getTAS(),
-                    data.getTAD(), data.getMMII(), data.getDisnea()));
-        }
 
         Workbook wb = new HSSFWorkbook();
         Cell cell = null;
@@ -777,12 +765,33 @@ public class Resultados extends AppCompatActivity {
         cell = row.createCell(1);
         cell.setCellValue(preferencesresult.getString("NoVueltas__", "none"));
 
-        row = sheet.createRow(30);
-        cell = row.createCell(0);
-        cell.setCellValue("");
+        // Definir las celdas de encabezado de columna
+        Row headerRow = sheet.createRow(30);
+        int columnCount = 3; // La columna inicial para los encabezados
 
-        cell = row.createCell(1);
-        cell.setCellValue(sb.toString());
+        for (int i = 0; i < dataList.size(); i++) {
+            dataMinuto data = dataList.get(i);
+            Row dataRow = sheet.createRow(i + 31); // La fila de datos (comienza en la tercera fila)
+
+            // Agregar los títulos de las columnas en celdas diferentes
+            headerRow.createCell(columnCount).setCellValue("Minuto");
+            headerRow.createCell(columnCount + 1).setCellValue("FC");
+            headerRow.createCell(columnCount + 2).setCellValue("Satur.");
+            headerRow.createCell(columnCount + 3).setCellValue("TAS");
+            headerRow.createCell(columnCount + 4).setCellValue("TAD");
+            headerRow.createCell(columnCount + 5).setCellValue("MMII");
+            headerRow.createCell(columnCount + 6).setCellValue("Disnea");
+
+            // Agregar los valores de los objetos en celdas correspondientes
+            dataRow.createCell(columnCount).setCellValue(data.getMinuto());
+            dataRow.createCell(columnCount + 1).setCellValue(data.getFC());
+            dataRow.createCell(columnCount + 2).setCellValue(data.getSaturacion());
+            dataRow.createCell(columnCount + 3).setCellValue(data.getTAS());
+            dataRow.createCell(columnCount + 4).setCellValue(data.getTAD());
+            dataRow.createCell(columnCount + 5).setCellValue(data.getMMII());
+            dataRow.createCell(columnCount + 6).setCellValue(data.getDisnea());
+        }
+
 
 
         cell = sheet.getRow(0).getCell(0);
