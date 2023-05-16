@@ -536,19 +536,7 @@ public class Resultados extends AppCompatActivity {
         SharedPreferences preferencesuser = getSharedPreferences("usur", MODE_PRIVATE);
         SharedPreferences preferencesresult = getSharedPreferences("result", MODE_PRIVATE);
 
-        // Define el formato para cada columna
-        String formato = "%-10s %-3s %-4s %-3s %-3s %-4s %-6s\n";
-        // Imprime los encabezados de las columnas
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format(formato, "Minuto", "FC", "Satur.", "TAS", "TAD", "MMII", "Disnea"));
-        // Imprime una línea separadora
-        sb.append("------------------------------------\n");
 
-        for (dataMinuto data : dataList) {
-            // Agrega cada valor en su columna correspondiente a la cadena
-            sb.append(String.format(formato, data.getMinuto(), data.getFC(), data.getSaturacion(), data.getTAS(),
-                    data.getTAD(), data.getMMII(), data.getDisnea()));
-        }
 
         Workbook wb = new HSSFWorkbook();
         Cell cell = null;
@@ -777,31 +765,88 @@ public class Resultados extends AppCompatActivity {
         cell = row.createCell(1);
         cell.setCellValue(preferencesresult.getString("NoVueltas__", "none"));
 
-        row = sheet.createRow(30);
-        cell = row.createCell(0);
-        cell.setCellValue("");
 
-        cell = row.createCell(1);
-        cell.setCellValue(sb.toString());
-        
+
+        // Definir los títulos de las columnas
+        String[] columnTitles = {"Minuto", "FC", "Satur.", "TAS", "TAD", "MMII", "Disnea"};
+
+// Crear las celdas para los títulos de las columnas
+        row = sheet.createRow(31); // Fila para los títulos
+        for (int i = 0; i < columnTitles.length; i++) {
+            cell = row.createCell(i + 3); // Las columnas comienzan en la celda D (índice 3)
+            cell.setCellValue(columnTitles[i]);
+        }
+
+// Crear las filas y celdas para los datos
+        for (int i = 0; i < dataList.size(); i++) {
+            dataMinuto data = dataList.get(i);
+            row = sheet.createRow(i + 32); // Fila para cada objeto dataMinuto
+            for (int j = 0; j < columnTitles.length; j++) {
+                cell = row.createCell(j + 3); // Las columnas comienzan en la celda D (índice 3)
+                switch (j) {
+                    case 0:
+                        cell.setCellValue(data.getMinuto());
+                        break;
+                    case 1:
+                        cell.setCellValue(data.getFC());
+                        break;
+                    case 2:
+                        cell.setCellValue(data.getSaturacion());
+                        break;
+                    case 3:
+                        cell.setCellValue(data.getTAS());
+                        break;
+                    case 4:
+                        cell.setCellValue(data.getTAD());
+                        break;
+                    case 5:
+                        cell.setCellValue(data.getMMII());
+                        break;
+                    case 6:
+                        cell.setCellValue(data.getDisnea());
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+        }
+
+
+
+
         cell = sheet.getRow(0).getCell(0);
-        // Establecer ancho de columna
+        if (cell == null) {
+            cell = sheet.getRow(0).createCell(0);
+        }
+// Establecer ancho de columna
         sheet.setColumnWidth(cell.getColumnIndex(), 5000);
 
         cell = sheet.getRow(0).getCell(1);
-        // Establecer ancho de columna
+        if (cell == null) {
+            cell = sheet.getRow(0).createCell(1);
+        }
+// Establecer ancho de columna
         sheet.setColumnWidth(cell.getColumnIndex(), 5000);
 
-        // Obtener celda o rango de celdas
+// Obtener celda o rango de celdas
         CellRangeAddress range = CellRangeAddress.valueOf("A1:B31");
         for (int row2 = range.getFirstRow(); row2 <= range.getLastRow(); row2++) {
+            row = sheet.getRow(row2);
+            if (row == null) {
+                row = sheet.createRow(row2);
+            }
             for (int col = range.getFirstColumn(); col <= range.getLastColumn(); col++) {
-                cell = sheet.getRow(row2).getCell(col);
+                cell = row.getCell(col);
+                if (cell == null) {
+                    cell = row.createCell(col);
+                }
 
                 // Aplicar estilo de borde a la celda
                 cell.setCellStyle(style);
             }
         }
+
 
         File file = new File(getExternalFilesDir(null), preferencesuser.getString("nombre", "none") + "_" + preferencesuser.getString("num_documento", "none") + ".xls");
         FileOutputStream outputStream = null;
