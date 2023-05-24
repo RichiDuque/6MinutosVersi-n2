@@ -714,7 +714,7 @@ public class Resultados extends AppCompatActivity {
         cell.setCellValue("% distancia alcanzada");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("PercentDista__", "none"));
+        cell.setCellValue(preferencesresult.getString("PercentDista__", "none")+" %");
 
         row = sheet.createRow(23);
         cell = row.createCell(0);
@@ -728,14 +728,14 @@ public class Resultados extends AppCompatActivity {
         cell.setCellValue(preferencesuser.getString("formula", "none"));
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("Troster__", "none"));
+        cell.setCellValue(preferencesresult.getString("Troster__", "none")+" m");
 
         row = sheet.createRow(25);
         cell = row.createCell(0);
         cell.setCellValue("VO2__");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("VO2MAX__", "none")+" ml.kg.min");
+        cell.setCellValue(preferencesresult.getString("VO2MAX__", "none")+" ml/kg/min");
 
         row = sheet.createRow(26);
         cell = row.createCell(0);
