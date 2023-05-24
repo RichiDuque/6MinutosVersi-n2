@@ -657,14 +657,14 @@ public class Resultados extends AppCompatActivity {
         cell.setCellValue("65%");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("sesentaFC__", "none"));
+        cell.setCellValue(preferencesresult.getString("sesentaFC__", "none")+" lpm");
 
         row = sheet.createRow(15);
         cell = row.createCell(0);
         cell.setCellValue("85%");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("ochentaFC__", "none"));
+        cell.setCellValue(preferencesresult.getString("ochentaFC__", "none")+" lpm");
 
         row = sheet.createRow(16);
         cell = row.createCell(0);
@@ -780,7 +780,7 @@ public class Resultados extends AppCompatActivity {
 // Crear las filas y celdas para los datos
         for (int i = 0; i < dataList.size(); i++) {
             dataMinuto data = dataList.get(i);
-            row = sheet.createRow(i + 32); // Fila para cada objeto dataMinuto
+            row = sheet.createRow(i + 1); // Fila para cada objeto dataMinuto
             for (int j = 0; j < columnTitles.length; j++) {
                 cell = row.createCell(j + 3); // Las columnas comienzan en la celda D (índice 3)
                 switch (j) {
@@ -848,7 +848,7 @@ public class Resultados extends AppCompatActivity {
         }
 
         // Obtener celda o rango de celdas de la tabla
-        CellRangeAddress range2 = CellRangeAddress.valueOf("A1:B30");
+        CellRangeAddress range2 = CellRangeAddress.valueOf("D1:J11");
         for (int row2 = range2.getFirstRow(); row2 <= range2.getLastRow(); row2++) {
             row = sheet.getRow(row2);
             if (row == null) {
