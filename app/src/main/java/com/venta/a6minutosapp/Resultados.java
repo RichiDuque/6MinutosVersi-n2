@@ -32,6 +32,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -555,210 +556,216 @@ public class Resultados extends AppCompatActivity {
 
         row = sheet.createRow(0);
         cell = row.createCell(0);
-        cell.setCellValue("Paciente");
+        cell.setCellValue("Fecha y hora actual");
 
         sheet.createRow(1);
         cell = row.createCell(1);
-        cell.setCellValue(preferencesuser.getString("nombre", "none"));
+        cell.setCellValue(LocalDateTime.now()+"");
 
         row = sheet.createRow(1);
+        cell = row.createCell(0);
+        cell.setCellValue("Paciente");
+
+        cell = row.createCell(1);
+        cell.setCellValue(preferencesuser.getString("nombre", "none"));
+
+        row = sheet.createRow(2);
         cell = row.createCell(0);
         cell.setCellValue("Tipo de documento");
 
         cell = row.createCell(1);
         cell.setCellValue(preferencesuser.getString("tipo_documento", "none"));
 
-        row = sheet.createRow(2);
+        row = sheet.createRow(3);
         cell = row.createCell(0);
         cell.setCellValue("N° Documento");
 
         cell = row.createCell(1);
         cell.setCellValue(preferencesuser.getString("num_documento", "none"));
 
-        row = sheet.createRow(3);
+        row = sheet.createRow(4);
         cell = row.createCell(0);
         cell.setCellValue("Fecha de nacimiento");
 
         cell = row.createCell(1);
         cell.setCellValue(preferencesuser.getString("fecha_nacimiento", "none"));
 
-        row = sheet.createRow(4);
+        row = sheet.createRow(5);
         cell = row.createCell(0);
         cell.setCellValue("Edad");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesuser.getString("edad", "none")+" años");
+        cell.setCellValue(preferencesuser.getString("edad", "none") + " años");
 
-        row = sheet.createRow(5);
+        row = sheet.createRow(6);
         cell = row.createCell(0);
         cell.setCellValue("Sexo");
 
         cell = row.createCell(1);
         cell.setCellValue(preferencesuser.getString("sexo", "none"));
 
-        row = sheet.createRow(6);
+        row = sheet.createRow(7);
         cell = row.createCell(0);
         cell.setCellValue("Medicamentos");
 
         cell = row.createCell(1);
         cell.setCellValue(preferencesuser.getString("Medicamentos", "none"));
 
-        row = sheet.createRow(7);
+        row = sheet.createRow(8);
         cell = row.createCell(0);
         cell.setCellValue("Peso");
 
         cell = row.createCell(1);
         cell.setCellValue(preferencesuser.getString("peso", "none"));
 
-        row = sheet.createRow(8);
+        row = sheet.createRow(9);
         cell = row.createCell(0);
         cell.setCellValue("Talla");
 
         cell = row.createCell(1);
         cell.setCellValue(preferencesuser.getString("Talla-mts", "none") + "," + preferencesuser.getString("Talla-cm", "none"));
 
-        row = sheet.createRow(9);
+        row = sheet.createRow(10);
         cell = row.createCell(0);
         cell.setCellValue("Formula");
 
         cell = row.createCell(1);
         cell.setCellValue(preferencesuser.getString("formula", "none"));
 
-        row = sheet.createRow(10);
+        row = sheet.createRow(11);
         cell = row.createCell(0);
         cell.setCellValue("Distancia");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesuser.getString("distancia", "none")+" m");
+        cell.setCellValue(preferencesuser.getString("distancia", "none") + " m");
 
-        row = sheet.createRow(11);
+        row = sheet.createRow(12);
         cell = row.createCell(0);
         cell.setCellValue("");
 
         cell = row.createCell(1);
         cell.setCellValue("");
 
-        row = sheet.createRow(12);
+        row = sheet.createRow(13);
         cell = row.createCell(0);
         cell.setCellValue("FC-teórica");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesuser.getString("FC-teorica", "none")+" lpm");
+        cell.setCellValue(preferencesuser.getString("FC-teorica", "none") + " lpm");
 
-        row = sheet.createRow(13);
+        row = sheet.createRow(14);
         cell = row.createCell(0);
         cell.setCellValue("FCM Alcanzada");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("FCMAlcanzado__", "none")+"%");
+        cell.setCellValue(preferencesresult.getString("FCMAlcanzado__", "none") + "%");
 
-        row = sheet.createRow(14);
+        row = sheet.createRow(15);
         cell = row.createCell(0);
         cell.setCellValue("65%");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("sesentaFC__", "none")+" lpm");
+        cell.setCellValue(preferencesresult.getString("sesentaFC__", "none") + " lpm");
 
-        row = sheet.createRow(15);
+        row = sheet.createRow(16);
         cell = row.createCell(0);
         cell.setCellValue("85%");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("ochentaFC__", "none")+" lpm");
+        cell.setCellValue(preferencesresult.getString("ochentaFC__", "none") + " lpm");
 
-        row = sheet.createRow(16);
-        cell = row.createCell(0);
+        row = sheet.createRow(17);
+        cell =row.createCell(0);
         cell.setCellValue("DIF__FC");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("DIF__FC", "none")+" lpm");
+        cell.setCellValue(preferencesresult.getString("DIF__FC", "none") + " lpm");
 
-
-        row = sheet.createRow(17);
+        row = sheet.createRow(18);
         cell = row.createCell(0);
         cell.setCellValue("FC__Recp");
 
         cell = row.createCell(1);
         cell.setCellValue(preferencesresult.getString("FC__Recp", "none"));
 
-        row = sheet.createRow(18);
+        row = sheet.createRow(19);
         cell = row.createCell(0);
         cell.setCellValue("");
 
         cell = row.createCell(1);
         cell.setCellValue("");
 
-        row = sheet.createRow(19);
+        row = sheet.createRow(20);
         cell = row.createCell(0);
         cell.setCellValue("DIF_TA");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("TA__", "none")+" mmHg");
+        cell.setCellValue(preferencesresult.getString("TA__", "none") + " mmHg");
 
-        row = sheet.createRow(20);
+        row = sheet.createRow(21);
         cell = row.createCell(0);
         cell.setCellValue("DIF_SAT");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("Dif__Sat", "none")+"%");
+        cell.setCellValue(preferencesresult.getString("Dif__Sat", "none") + "%");
 
-        row = sheet.createRow(21);
+        row = sheet.createRow(22);
         cell = row.createCell(0);
         cell.setCellValue("");
 
         cell = row.createCell(1);
         cell.setCellValue("");
 
-        row = sheet.createRow(22);
+        row = sheet.createRow(23);
         cell = row.createCell(0);
         cell.setCellValue("% distancia alcanzada");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("PercentDista__", "none")+" %");
+        cell.setCellValue(preferencesresult.getString("PercentDista__", "none") + "%");
 
-        row = sheet.createRow(23);
+        row = sheet.createRow(24);
         cell = row.createCell(0);
         cell.setCellValue("");
 
         cell = row.createCell(1);
         cell.setCellValue("");
 
-        row = sheet.createRow(24);
+        row = sheet.createRow(25);
         cell = row.createCell(0);
         cell.setCellValue(preferencesuser.getString("formula", "none"));
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("Troster__", "none")+" m");
+        cell.setCellValue(preferencesresult.getString("Troster__", "none") + " m");
 
-        row = sheet.createRow(25);
+        row = sheet.createRow(26);
         cell = row.createCell(0);
         cell.setCellValue("VO2__");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("VO2MAX__", "none")+" ml/kg/min");
+        cell.setCellValue(preferencesresult.getString("VO2MAX__", "none") + " ml/kg/min");
 
-        row = sheet.createRow(26);
+        row = sheet.createRow(27);
         cell = row.createCell(0);
         cell.setCellValue("METS_");
 
         cell = row.createCell(1);
         cell.setCellValue(preferencesresult.getString("METS__", "none"));
 
-        row = sheet.createRow(27);
+        row = sheet.createRow(28);
         cell = row.createCell(0);
         cell.setCellValue("N° Detenciones");
 
         cell = row.createCell(1);
         cell.setCellValue(preferencesresult.getString("NoDetencion", "none"));
 
-        row = sheet.createRow(28);
+        row = sheet.createRow(29);
         cell = row.createCell(0);
         cell.setCellValue("Duración total de detenciones");
 
         cell = row.createCell(1);
         cell.setCellValue(preferencesresult.getString("Duracion_Detencion", "none"));
 
-        row = sheet.createRow(29);
+        row = sheet.createRow(30);
         cell = row.createCell(0);
         cell.setCellValue("N° de vueltas");
 
@@ -771,18 +778,18 @@ public class Resultados extends AppCompatActivity {
         String[] columnTitles = {"Minuto", "FC", "Satur.", "TAS", "TAD", "MMII", "Disnea"};
 
         // Crear las celdas para los títulos de las columnas
-        row = sheet.createRow(0); // Fila para los títulos
+        row = sheet.createRow(30); // Fila para los títulos
         for (int i = 0; i < columnTitles.length; i++) {
-            cell = row.createCell(i + 3); // Las columnas comienzan en la celda D (índice 3)
+            cell = row.createCell(i); // Las columnas comienzan en la celda A (índice 0)
             cell.setCellValue(columnTitles[i]);
         }
 
 // Crear las filas y celdas para los datos
         for (int i = 0; i < dataList.size(); i++) {
             dataMinuto data = dataList.get(i);
-            row = sheet.createRow(i + 1); // Fila para cada objeto dataMinuto
+            row = sheet.createRow(i + 31); // Fila para cada objeto dataMinuto (fila 32 en adelante en base a la numeración de índices)
             for (int j = 0; j < columnTitles.length; j++) {
-                cell = row.createCell(j + 3); // Las columnas comienzan en la celda D (índice 3)
+                cell = row.createCell(j); // Las columnas comienzan en la celda A (índice 0)
                 switch (j) {
                     case 0:
                         cell.setCellValue(data.getMinuto());
@@ -811,9 +818,7 @@ public class Resultados extends AppCompatActivity {
 
             }
         }
-
-
-
+        
 
         cell = sheet.getRow(0).getCell(0);
         if (cell == null) {
