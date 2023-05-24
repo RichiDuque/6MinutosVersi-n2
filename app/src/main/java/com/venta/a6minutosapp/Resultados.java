@@ -587,7 +587,7 @@ public class Resultados extends AppCompatActivity {
         cell.setCellValue("Edad");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesuser.getString("edad", "none"));
+        cell.setCellValue(preferencesuser.getString("edad", "none")+" años");
 
         row = sheet.createRow(5);
         cell = row.createCell(0);
@@ -626,10 +626,10 @@ public class Resultados extends AppCompatActivity {
 
         row = sheet.createRow(10);
         cell = row.createCell(0);
-        cell.setCellValue("distancia");
+        cell.setCellValue("Distancia");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesuser.getString("distancia", "none"));
+        cell.setCellValue(preferencesuser.getString("distancia", "none")+" m");
 
         row = sheet.createRow(11);
         cell = row.createCell(0);
@@ -643,14 +643,14 @@ public class Resultados extends AppCompatActivity {
         cell.setCellValue("FC-teórica");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesuser.getString("FC-teorica", "none"));
+        cell.setCellValue(preferencesuser.getString("FC-teorica", "none")+" lpm");
 
         row = sheet.createRow(13);
         cell = row.createCell(0);
         cell.setCellValue("FCM Alcanzada");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("FCMAlcanzado__", "none"));
+        cell.setCellValue(preferencesresult.getString("FCMAlcanzado__", "none")+"%");
 
         row = sheet.createRow(14);
         cell = row.createCell(0);
@@ -671,7 +671,7 @@ public class Resultados extends AppCompatActivity {
         cell.setCellValue("DIF__FC");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("DIF__FC", "none"));
+        cell.setCellValue(preferencesresult.getString("DIF__FC", "none")+" lpm");
 
 
         row = sheet.createRow(17);
@@ -693,14 +693,14 @@ public class Resultados extends AppCompatActivity {
         cell.setCellValue("DIF_TA");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("TA__", "none"));
+        cell.setCellValue(preferencesresult.getString("TA__", "none")+" mmHg");
 
         row = sheet.createRow(20);
         cell = row.createCell(0);
         cell.setCellValue("DIF_SAT");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("Dif__Sat", "none"));
+        cell.setCellValue(preferencesresult.getString("Dif__Sat", "none")+"%");
 
         row = sheet.createRow(21);
         cell = row.createCell(0);
@@ -711,7 +711,7 @@ public class Resultados extends AppCompatActivity {
 
         row = sheet.createRow(22);
         cell = row.createCell(0);
-        cell.setCellValue("PercentDista");
+        cell.setCellValue("% distancia alcanzada");
 
         cell = row.createCell(1);
         cell.setCellValue(preferencesresult.getString("PercentDista__", "none"));
@@ -735,7 +735,7 @@ public class Resultados extends AppCompatActivity {
         cell.setCellValue("VO2__");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesresult.getString("VO2MAX__", "none"));
+        cell.setCellValue(preferencesresult.getString("VO2MAX__", "none")+" ml.kg.min");
 
         row = sheet.createRow(26);
         cell = row.createCell(0);
@@ -770,8 +770,8 @@ public class Resultados extends AppCompatActivity {
         // Definir los títulos de las columnas
         String[] columnTitles = {"Minuto", "FC", "Satur.", "TAS", "TAD", "MMII", "Disnea"};
 
-// Crear las celdas para los títulos de las columnas
-        row = sheet.createRow(31); // Fila para los títulos
+        // Crear las celdas para los títulos de las columnas
+        row = sheet.createRow(0); // Fila para los títulos
         for (int i = 0; i < columnTitles.length; i++) {
             cell = row.createCell(i + 3); // Las columnas comienzan en la celda D (índice 3)
             cell.setCellValue(columnTitles[i]);
@@ -819,24 +819,42 @@ public class Resultados extends AppCompatActivity {
         if (cell == null) {
             cell = sheet.getRow(0).createCell(0);
         }
-// Establecer ancho de columna
+        // Establecer ancho de columna
         sheet.setColumnWidth(cell.getColumnIndex(), 5000);
 
         cell = sheet.getRow(0).getCell(1);
         if (cell == null) {
             cell = sheet.getRow(0).createCell(1);
         }
-// Establecer ancho de columna
+        // Establecer ancho de columna
         sheet.setColumnWidth(cell.getColumnIndex(), 5000);
 
-// Obtener celda o rango de celdas
-        CellRangeAddress range = CellRangeAddress.valueOf("A1:B31");
+        // Obtener celda o rango de celdas
+        CellRangeAddress range = CellRangeAddress.valueOf("A1:B30");
         for (int row2 = range.getFirstRow(); row2 <= range.getLastRow(); row2++) {
             row = sheet.getRow(row2);
             if (row == null) {
                 row = sheet.createRow(row2);
             }
             for (int col = range.getFirstColumn(); col <= range.getLastColumn(); col++) {
+                cell = row.getCell(col);
+                if (cell == null) {
+                    cell = row.createCell(col);
+                }
+
+                // Aplicar estilo de borde a la celda
+                cell.setCellStyle(style);
+            }
+        }
+
+        // Obtener celda o rango de celdas de la tabla
+        CellRangeAddress range2 = CellRangeAddress.valueOf("A1:B30");
+        for (int row2 = range2.getFirstRow(); row2 <= range2.getLastRow(); row2++) {
+            row = sheet.getRow(row2);
+            if (row == null) {
+                row = sheet.createRow(row2);
+            }
+            for (int col = range2.getFirstColumn(); col <= range2.getLastColumn(); col++) {
                 cell = row.getCell(col);
                 if (cell == null) {
                     cell = row.createCell(col);
