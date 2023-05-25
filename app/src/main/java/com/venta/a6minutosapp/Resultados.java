@@ -818,7 +818,7 @@ public class Resultados extends AppCompatActivity {
 
             }
         }
-        
+
 
         cell = sheet.getRow(0).getCell(0);
         if (cell == null) {
