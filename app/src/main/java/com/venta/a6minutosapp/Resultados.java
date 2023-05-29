@@ -32,10 +32,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.TimeZone;
 
 public class Resultados extends AppCompatActivity {
     TabLayout Tabresultados;
@@ -537,7 +539,17 @@ public class Resultados extends AppCompatActivity {
         SharedPreferences preferencesuser = getSharedPreferences("usur", MODE_PRIVATE);
         SharedPreferences preferencesresult = getSharedPreferences("result", MODE_PRIVATE);
 
+        Date fechaActual = new Date();
 
+        // Establecer la zona horaria a Colombia
+        TimeZone zonaHoraria = TimeZone.getTimeZone("America/Bogota");
+
+        // Crear un formateador de fecha y hora
+        SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        formateador.setTimeZone(zonaHoraria);
+
+        // Formatear la fecha actual según el formato deseado
+        String horaActualColombia = formateador.format(fechaActual);
 
         Workbook wb = new HSSFWorkbook();
         Cell cell = null;
@@ -560,7 +572,7 @@ public class Resultados extends AppCompatActivity {
 
         sheet.createRow(1);
         cell = row.createCell(1);
-        cell.setCellValue(LocalDateTime.now()+"");
+        cell.setCellValue(horaActualColombia);
 
         row = sheet.createRow(1);
         cell = row.createCell(0);
@@ -616,14 +628,14 @@ public class Resultados extends AppCompatActivity {
         cell.setCellValue("Peso");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesuser.getString("peso", "none"));
+        cell.setCellValue(preferencesuser.getString("peso", "none")+" Kg");
 
         row = sheet.createRow(9);
         cell = row.createCell(0);
         cell.setCellValue("Talla");
 
         cell = row.createCell(1);
-        cell.setCellValue(preferencesuser.getString("Talla-mts", "none") + "," + preferencesuser.getString("Talla-cm", "none"));
+        cell.setCellValue(preferencesuser.getString("Talla-mts", "none") + "," + preferencesuser.getString("Talla-cm", "none")+" m");
 
         row = sheet.createRow(10);
         cell = row.createCell(0);
@@ -853,7 +865,7 @@ public class Resultados extends AppCompatActivity {
         }
 
         // Obtener celda o rango de celdas de la tabla
-        CellRangeAddress range2 = CellRangeAddress.valueOf("D1:J11");
+        CellRangeAddress range2 = CellRangeAddress.valueOf("A31:G41");
         for (int row2 = range2.getFirstRow(); row2 <= range2.getLastRow(); row2++) {
             row = sheet.getRow(row2);
             if (row == null) {
