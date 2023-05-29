@@ -496,7 +496,7 @@ public class Resultados extends AppCompatActivity {
         Button buttonSi=dialog.findViewById(R.id.ButtonSi);
         Button buttonNo=dialog.findViewById(R.id.ButtonNo);
         buttonSi.setOnClickListener(view -> {
-            /*
+
             SharedPreferences sharedPreferences = getSharedPreferences("usur", MODE_PRIVATE);
             String correo = sharedPreferences.getString("CorreoP","");
             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -512,7 +512,7 @@ public class Resultados extends AppCompatActivity {
             SharedPreferences preferences = getSharedPreferences("usur", MODE_PRIVATE);
             SharedPreferences.Editor editornuevo = preferences.edit();
             editornuevo.putString("CorreoP", correo);
-            editornuevo.commit();*/
+            editornuevo.commit();
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
         });
